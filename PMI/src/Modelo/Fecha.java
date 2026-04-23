@@ -11,9 +11,9 @@ public class Fecha {
 
     // constructor por defecto
     public Fecha() {
-        this.dia = 1;
-        this.mes = 1;
-        this.año = 2000;
+        this.dia = 0;
+        this.mes = 0;
+        this.año = 0;
     }
     
     // constructor con parámetros

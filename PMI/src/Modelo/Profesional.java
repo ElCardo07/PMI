@@ -4,26 +4,22 @@
  */
 package Modelo;
 
-/**
- *
- * @author Usuario
- */
 public class Profesional extends Persona {
     
-   private int matricula;
+   //Variables
+    private int matricula;
 
+    //Constructores
     public Profesional(int matricula, String apellido, String nombre, int telefono, String mail) {
         super(apellido, nombre, telefono, mail);
         this.matricula = matricula;
     }
-
-    public Profesional(int matricula) {
-        this.matricula = matricula;
-    }
-   
-   
     
+    public Profesional() {    
+        matricula = 0;
+    }
 
+    //Gets y sets
     public int getMatricula() {
         return matricula;
     }
@@ -31,6 +27,11 @@ public class Profesional extends Persona {
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
-    
+
+    //toString
+    @Override
+    public String toString() {
+        return "\nMatricula: " + matricula;
+    }
     
 }

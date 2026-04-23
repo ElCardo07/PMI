@@ -63,7 +63,7 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "apellido=" + apellido + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + '}';
+        return "Nombre: " + nombre + "\nApellido: " + apellido + "\nNumero de telefono: "+ telefono + "\nMain: " + mail;
     }
     
    

@@ -1,13 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 
-/**
- *
- * @author jerem
- */
+import Modelo.Paciente;
+import Modelo.Profesional;
+import java.util.List;
+import java.util.ArrayList;
+
 public class PacienteControlador {
     
+    private Paciente paciente;
+    private List<Paciente> listaPaciente;
+    
+    //Constructores
+    public PacienteControlador(){
+        this.listaPaciente = new ArrayList<>();
+    }
+    
+    public PacienteControlador(Paciente paciente){
+        this.paciente = paciente;
+    }
+    
+    public PacienteControlador(Paciente paciente, List<Paciente> listaPaciente) {
+        this.paciente = paciente;
+        this.listaPaciente = listaPaciente;
+    }
+    
+    //Metodos de carga de pacientes
+    public void setDniPaciente(int dni){
+        paciente.setDni(dni);
+    }
+    
+    public void setApellidoPaciente(String apellido){
+        paciente.setApellido(apellido);
+    }
+    
+    public void setNombrePaciente(String nombre){
+        paciente.setNombre(nombre);
+    }
+
+    public void setObraSocial(boolean obraSocial) {
+        paciente.setObraSocial(obraSocial);
+    }
+    
+    public void setMail(String mail) {
+        paciente.setMail(mail);
+    }
+
+    public void setTelefono(int telefono) {
+        paciente.setTelefono(telefono);
+    }
+
+    //Metodos relativos a la lista de pacientes
+    public void listaAgregarPaciente(){
+        listaPaciente.add(paciente);
+    }
+
+    public void listaEliminarPaciente(Paciente paciente){
+        listaPaciente.remove(paciente);
+    }
 }
