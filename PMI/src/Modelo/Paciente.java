@@ -9,27 +9,28 @@ package Modelo;
  * @author Usuario
  */
 public class Paciente extends Persona {
-    private String obraSocial;
-    
-    
-    public Paciente() {
-        super();
-        this.obraSocial = "";
+   private boolean ObraSocial;
+   private int dni;
+
+   
+   
+   
+   
+   
+   
+    public int getDni() {
+        return dni;
     }
 
-    
-    public Paciente(int dni, String nombre, String obraSocial) {
-        super(dni, nombre);
-        this.obraSocial = obraSocial;
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+   
+    public boolean getObraSocial() {
+        return ObraSocial;
     }
 
-    public String getObraSocial() {
-        return obraSocial;
+    public void setObraSocial(boolean ObraSocial) {
+        this.ObraSocial = ObraSocial;
     }
-
-    public void setObraSocial(String obraSocial) {
-        this.obraSocial = obraSocial;
-    }
-    
-    
 }

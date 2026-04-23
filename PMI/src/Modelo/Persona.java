@@ -4,34 +4,37 @@
  */
 package Modelo;
 
-/**
- *
- * @author Usuario
- */
+
+
+
 public abstract class Persona {
     
-    private int dni;
+    private String apellido;
     private String nombre;
+    private int telefono;
+    private String mail;
 
-    public Persona(int dni, String nombre) {
-        this.dni = dni;
+    public Persona(String apellido, String nombre, int telefono, String mail) {
+        this.apellido = apellido;
         this.nombre = nombre;
-    }
-    
-    public Persona(){
-        this.dni=0;
-        this.nombre="";
-        
-    
-        
+        this.telefono = telefono;
+        this.mail = mail;
     }
 
-    public int getDni() {
-        return dni;
+   public Persona (){
+       this.apellido = "";
+       this.mail = "";
+       this.nombre= "";
+       this.telefono = 0;
+       
+   }
+
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getNombre() {
@@ -41,8 +44,28 @@ public abstract class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-        
-  }
 
+    public int getTelefono() {
+        return telefono;
+    }
 
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "apellido=" + apellido + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + '}';
+    }
     
+   
+   
+  }
