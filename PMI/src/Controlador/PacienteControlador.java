@@ -2,7 +2,6 @@
 package Controlador;
 
 import Modelo.Paciente;
-import Modelo.Profesional;
 import java.util.List;
 import java.util.ArrayList;
 

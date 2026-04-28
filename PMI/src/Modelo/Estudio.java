@@ -15,10 +15,10 @@ public class Estudio{
     private Fecha realizacion;
     private Fecha entrega;
     private String estado;// "En elaboracion", "Finalizado", "Retirado", "Enviado"
-    private List<String> analisis;//array de analisis porque tiene que ser mas de 1, el limite va a ser 99 por que no hay limete real para la cantidad de analisis que puede hacer una persona //preguntar ?
+    private List<Integer> analisis;//array de analisis porque tiene que ser mas de 1, el limite va a ser 99 por que no hay limete real para la cantidad de analisis que puede hacer una persona //preguntar ?
     
     //constructor 1
-    public Estudio(Paciente paciente, Profesional profesional, Fecha realizacion, Fecha entrega, String estado, List<String> analisis) {
+    public Estudio(Paciente paciente, Profesional profesional, Fecha realizacion, Fecha entrega, String estado, List<Integer> analisis) {
         this.paciente = paciente;
         this.profesional = profesional;
         this.realizacion = realizacion;
@@ -76,11 +76,22 @@ public class Estudio{
         this.estado = estado;
     }
 
-    public List<String> getAnalisis() {
+    public List<Integer> getAnalisis() {
         return analisis;
     }
 
-    public void setAnalisis(List<String> analisis) {
+    public void setAnalisis(List<Integer> analisis) {
         this.analisis = analisis;
     }
+    
+    // Método para agregar un solo análisis sin tener que setear toda la lista de nuevo
+    public void agregarAnalisisCodigo(int codigo) {
+        this.analisis.add(codigo);
 }
+
+    // Método para saber cuántos análisis tiene este estudio (Ejercicio 6d del práctico)
+    public int cantidadAnalisis() {
+        return this.analisis.size();
+}
+}
+
