@@ -1,11 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
-
-
-
 
 public abstract class Persona {
     
@@ -63,9 +56,12 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\nApellido: " + apellido + "\nNumero de telefono: "+ telefono + "\nMain: " + mail;
+        return "Apellido: " + apellido + "\nNombre: " + nombre + "\nNumero de telefono: "+ telefono + "\nMain: " + mail;
     }
+    public void mostrarDatos() {
+    System.out.println(this.toString());
+    // o simplemente: System.out.println(this);
     
-   
-   
-  }
+    
+}  
+}

@@ -41,4 +41,14 @@ public class Paciente extends Persona {
     public void setDni(int dni) {
         this.dni = dni;
     }
+    @Override
+    public String toString() {
+        return "Paciente:\nApellido: " + getApellido() + "\nNombre: " + getNombre() + "\nTelefono: "+ getTelefono() + "\nMail: " + getMail() + "\nObraSocial: " + obraSocial + "\nDni: " + dni;
+    }
+    @Override 
+    public void mostrarDatos(){
+        super.mostrarDatos();
+        System.out.println("\nObra social: " + obraSocial);
+        System.out.println("Dni: " + dni);
+    }
 }

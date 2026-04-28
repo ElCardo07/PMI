@@ -33,5 +33,10 @@ public class Profesional extends Persona {
     public String toString() {
         return "\nMatricula: " + matricula;
     }
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("Matricula: "+ matricula);
+    }
     
 }
