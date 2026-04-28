@@ -57,4 +57,16 @@ public class PacienteControlador {
     public void listaEliminarPaciente(Paciente paciente){
         listaPaciente.remove(paciente);
     }
+    
+    public void mostrar(){
+        for(Paciente p : listaPaciente){
+            if(p.isObraSocial()){
+                p.mostrarPaciente();
+            }else{
+                if(!p.isObraSocial()){
+                    p.mostrarPaciente();
+                }
+            }
+        }
+    }
 }
