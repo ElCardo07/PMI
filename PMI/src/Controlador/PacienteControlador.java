@@ -13,6 +13,7 @@ public class PacienteControlador {
     //Constructores
     public PacienteControlador(){
         this.listaPaciente = new ArrayList<>();
+        this.paciente = new Paciente();
     }
     
     public PacienteControlador(Paciente paciente){
@@ -57,6 +58,11 @@ public class PacienteControlador {
     public void listaEliminarPaciente(Paciente paciente){
         listaPaciente.remove(paciente);
     }
+    
+        // Agregá esto en PacienteControlador.java
+    public List<Paciente> getListaPaciente() {
+        return listaPaciente;
+}
     
     public void mostrar(){
         for(Paciente p : listaPaciente){

@@ -18,7 +18,7 @@ public class ProfesionalControlador {
         // 2. Lo registramos en el HashMap usando la matrícula como CLAVE
         mapaProfesionales.put(matricula, nuevoPro);
         
-        System.out.println("Profesional " + nombre + " registrado con éxito.");
+        System.out.println("Profesional " + nombre + " registrado con exito.");
     }
     
     // Método para buscar un médico (esto quita el aviso de "never read")
