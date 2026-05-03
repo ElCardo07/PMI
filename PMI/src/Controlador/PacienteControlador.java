@@ -75,4 +75,8 @@ public class PacienteControlador {
             }
         }
     }
+    public void prepararNuevoPaciente() {
+    this.paciente = new Paciente(); // Crea un paciente limpio para la próxima carga
 }
+}
+

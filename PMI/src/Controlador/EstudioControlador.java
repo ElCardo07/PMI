@@ -1,14 +1,19 @@
 package Controlador;
-import java.util.HashMap;
-import java.util.Map;
 
+import Modelo.Estudio;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EstudioControlador {
     private Map<Integer, String> catalogo = new HashMap<>();
-
     
-    public EstudioControlador () {
-        // Carga inicial
+    //Analisis
+    private List<Estudio> listaEstudios = new ArrayList<>();
+
+    public EstudioControlador() {
+       //Carga de analisis
         catalogo.put(246, "Glucemia");
         catalogo.put(135, "Hemograma");
         catalogo.put(468, "Colesterol");
@@ -20,16 +25,22 @@ public class EstudioControlador {
         catalogo.put(024, "Ferritina");
         catalogo.put(913, "Insulina");
     }
+    public List<Estudio> getListaEstudios() {
+        return listaEstudios;
+    }
 
-    // Método fácil para que el Paciente "vea" el catálogo
+    //////////////////////////METODOS//////////////////////////////////
+    
+    public void agregarEstudio(Estudio nuevo) {
+        this.listaEstudios.add(nuevo);
+    }
+    
     public boolean existeCodigo(int codigo) {
         return catalogo.containsKey(codigo);
     }
 
-    // Método para obtener el nombre real del análisis
     public String obtenerNombre(int codigo) {
         return catalogo.get(codigo);
     }
 }
-
 
