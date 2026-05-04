@@ -7,20 +7,20 @@ package Modelo;
 public class Fecha {
     private int dia;
     private int mes;
-    private int año;
+    private int anio;
 
     // constructor por defecto
     public Fecha() {
         this.dia = 0;
         this.mes = 0;
-        this.año = 0;
+        this.anio = 0;
     }
     
     // constructor con parámetros
-    public Fecha(int dia, int mes, int año) {
+    public Fecha(int dia, int mes, int anio) {
         this.dia = dia;
         this.mes = mes;
-        this.año = año;
+        this.anio = anio;
     }
     
 
@@ -40,24 +40,31 @@ public class Fecha {
         this.mes = mes;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
     
     public int cantDias(Fecha d){
-        int diasFecha1 = (this.año * 365) + (this.mes * 30) + this.dia;
-        int diasFecha2 = (d.getAño() * 365) + (d.getMes() * 30) + d.getDia();
+        int diasFecha1 = (this.anio * 365) + (this.mes * 30) + this.dia;
+        int diasFecha2 = (d.getAnio() * 365) + (d.getMes() * 30) + d.getDia();
         
         return Math.abs(diasFecha1 - diasFecha2);
     }
 
     @Override
     public String toString() {
-        return "Fecha: " + dia + "/" + mes + "/" + año;
+        return "Fecha: " + dia + "/" + mes + "/" + anio;
     }
+   
+   
+    public boolean esIgual(Fecha otraFecha) {
+    return this.dia == otraFecha.getDia() && 
+           this.mes == otraFecha.getMes() && 
+           this.anio == otraFecha.getAnio();
+}
     
 }

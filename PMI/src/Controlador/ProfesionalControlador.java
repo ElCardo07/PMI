@@ -30,4 +30,6 @@ public class ProfesionalControlador {
     public int totalProfesionales() {
         return mapaProfesionales.size();
     }
+    
+    
 }

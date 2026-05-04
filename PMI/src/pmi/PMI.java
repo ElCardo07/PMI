@@ -52,7 +52,7 @@ codigosAnalisis.add(246); // Agregamos Glucemia por código
 
 Estudio nuevoEstudio = new Estudio(pacAsignado, profAsignado, hoy, entrega, "En elaboración", codigosAnalisis);
 
-eControl.agregarEstudio(nuevoEstudio);
+eControl.listaAgregarEstudio();
 // 4. Verificamos que todo esté conectado
 System.out.println("--- RESUMEN DEL ESTUDIO CREATIVO ---");
 System.out.println("Paciente: " + nuevoEstudio.getPaciente().getApellido());
