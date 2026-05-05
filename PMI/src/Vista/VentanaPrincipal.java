@@ -122,8 +122,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaCargar ventanaCargar = new VentanaCargar(pControl, profControl, eControl);
+        VentanaCargar ventanaCargar = new VentanaCargar(pControl, profControl, eControl, this);
         ventanaCargar.setVisible(true);
+        this.setVisible(false); // esconde la principal
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
