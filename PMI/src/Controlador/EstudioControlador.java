@@ -127,17 +127,15 @@ public class EstudioControlador {
     
     // Consultas del TP
     
-    public int cant_estudio_paciente(int dniBuscado){ // devuelve la cantidad de estudio que hizo un paciente para poder mostrarlo en vista
-        
-        int cant = 0;
-        
-        for(Estudio e: listaEstudios){
-            if(e.getPaciente().getDni() == dniBuscado){
-               cant++;
-            }
+    public int cantidadEstudiosPorPaciente(String dniBuscado) {
+    int cant = 0;
+    for (Estudio e : listaEstudios) {
+        if (e.getPaciente().getDni().equals(dniBuscado)) {
+            cant++;
         }
-        return cant;
     }
+    return cant;
+}
     
     public List<Estudio> obtenerEstudiosPorEstado(String estado) {// Devuelve los estudios de un estado pasado por parametro
         List<Estudio> resultado = new ArrayList<>();
@@ -171,6 +169,7 @@ public class EstudioControlador {
     }
     return filtrados;
 }
+    
 
 }
 

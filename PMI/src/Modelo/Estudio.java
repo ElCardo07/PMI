@@ -93,6 +93,21 @@ public class Estudio{
     public int cantidadAnalisis() {
         return this.analisis.size();
 }
+    //toString
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Paciente: ").append(paciente.getNombre()).append(" ").append(paciente.getApellido()).append("\n");
+        sb.append("Profesional: ").append(profesional.getNombre()).append(" ").append(profesional.getApellido()).append("\n");
+        sb.append("Fecha de realización: ").append(realizacion.toString()).append("\n");
+        sb.append("Fecha de entrega: ").append(entrega.toString()).append("\n");
+        sb.append("Estado: ").append(estado).append("\n");
+        sb.append("Análisis: ");
+        for (int codigo : analisis) {
+            sb.append(codigo).append(" ");
+        }
+        return sb.toString();
+    }
 }
 
 

@@ -14,7 +14,7 @@ public class PMI {
         
  
         // 2. Seteamos los datos uno por uno usando tus métodos
-        pControl.setDniPaciente(40123456);
+        pControl.setDniPaciente("40123456");
         pControl.setNombrePaciente("Juan");
         pControl.setApellidoPaciente("Gomez");
         pControl.setObraSocial(true);
@@ -61,11 +61,10 @@ System.out.println("Fecha Realización: " + nuevoEstudio.getRealizacion().getDia
     
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
     
-    
+    // Vista jere
      
-    MenuPrincipal menu = new MenuPrincipal(pControl, profControl, eControl);
-    menu.setVisible(true);
-    
+    VentanaPrincipal ventana = new VentanaPrincipal(pControl, profControl, eControl);
+    ventana.setVisible(true);
     
     }
 

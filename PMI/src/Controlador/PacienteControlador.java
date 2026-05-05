@@ -26,7 +26,7 @@ public class PacienteControlador {
     }
     
     //Metodos de carga de pacientes
-    public void setDniPaciente(int dni){
+    public void setDniPaciente(String dni){
         paciente.setDni(dni);
     }
     
@@ -77,6 +77,19 @@ public class PacienteControlador {
     }
     public void prepararNuevoPaciente() {
     this.paciente = new Paciente(); // Crea un paciente limpio para la próxima carga
+}
+    //Detalles
+    
+    public boolean dniValido(String dni) {//Verifica que el dni tenga en 7 u 8 caracteres 
+    if (dni.length() != 7 && dni.length() != 8) {
+        return false;
+    }
+    for (char c : dni.toCharArray()) {
+        if (!Character.isDigit(c)) {
+            return false;
+        }
+    }
+    return true;
 }
 }
 

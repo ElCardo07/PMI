@@ -11,10 +11,10 @@ package Modelo;
 public class Paciente extends Persona {
     //variables
     private boolean obraSocial;
-    private int dni;
+    private String dni;
     
     //Constructores
-    public Paciente(boolean obraSocial, int dni, String apellido, String nombre, int telefono, String mail) {
+    public Paciente(boolean obraSocial, String dni, String apellido, String nombre, int telefono, String mail) {
         super(apellido, nombre, telefono, mail);
         this.obraSocial = obraSocial;
         this.dni = dni;
@@ -22,7 +22,7 @@ public class Paciente extends Persona {
     public Paciente() {   
         super();
         this.obraSocial = false;
-        this.dni = 0;
+        this.dni = "";
     }
 
     //gets y sets
@@ -34,11 +34,11 @@ public class Paciente extends Persona {
         this.obraSocial = obraSocial;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
     @Override
