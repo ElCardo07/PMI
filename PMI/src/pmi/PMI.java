@@ -2,74 +2,55 @@ package pmi;
 
 import Modelo.*;
 import Controlador.*;
-import java.util.List;
 import Vista.*;
+import java.util.List;
 
 public class PMI {
     public static void main(String[] args) {
-        // 1. Instanciamos los controladores
-        PacienteControlador pControl = new PacienteControlador();
+        
+        // 1. Instanciamos el ArchivoControlador definiendo el nombre físico de los archivos
+        ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+
+        System.out.println("--- INICIANDO SISTEMA DE LABORATORIO ---");
+        System.out.println("Buscando archivos de persistencia...");
+
+        // 2. Cargamos los datos desde el disco a la memoria RAM
+        List<Paciente> pacientesCargados = archivoCtrl.cargarPacientes();
+        List<Profesional> profesionalesCargados = archivoCtrl.cargarProfesionales();
+        
+        // El estudio se carga último porque necesita las listas anteriores para rearmar los vínculos
+        List<Estudio> estudiosCargados = archivoCtrl.cargarEstudios(pacientesCargados, profesionalesCargados);
+
+        // 3. Instanciamos los controladores inyectando los datos que acabamos de leer
+        
+        // A. Pacientes (Usamos tu constructor que recibe el objeto en blanco y la lista)
+        PacienteControlador pControl = new PacienteControlador(new Paciente(), pacientesCargados);
+        
+        // B. Profesionales (Solución al choque de estructuras: pasamos de List a HashMap)
         ProfesionalControlador profControl = new ProfesionalControlador();
-        EstudioControlador eControl = new EstudioControlador();
+        for (Profesional prof : profesionalesCargados) {
+            // Usamos tu propio método para que se agreguen al mapa usando la matrícula como clave
+            profControl.registrarNuevoProfesional(
+                prof.getMatricula(), 
+                prof.getApellido(), 
+                prof.getNombre(), 
+                prof.getTelefono(), 
+                prof.getMail()
+            );
+        }
         
- 
-        // 2. Seteamos los datos uno por uno usando tus métodos
-        pControl.setDniPaciente("40123456");
-        pControl.setNombrePaciente("Juan");
-        pControl.setApellidoPaciente("Gomez");
-        pControl.setObraSocial(true);
-        pControl.setTelefono("266400");
-        pControl.setMail("juan@mail.com");
-        
-        // 3. Ahora que el objeto interno 'paciente' del controlador está lleno,
-        // llamamos a tu método que lo mete en la lista maestra
-        pControl.listaAgregarPaciente();
-        
-        System.out.println("Precarga terminada con exito.");
-        
-        // --- PRUEBA DE PROFESIONAL (HashMap) ---
-        profControl.registrarNuevoProfesional(1010, "Roccuzzo", "Antonela", "2664", "anto@mail.com");
-        
-        // --- MOSTRAR RESULTADOS ---
-        System.out.println("Pacientes en lista: " + pControl.getListaPaciente().size());
-        System.out.println("Medico en mapa: " + profControl.buscarProfesional(1010).getNombre());
-    
-    
-    // --- PRUEBA DE INTEGRACIÓN ---
+        // C. Estudios
+        EstudioControlador eControl = new EstudioControlador(new Estudio(), estudiosCargados);
 
-// 1. Buscamos al profesional que cargamos antes (Antonela)
-Profesional profAsignado = profControl.buscarProfesional(1010);
+        // Reporte de carga por consola (muy útil para depurar)
+        System.out.println("\n--- REPORTE DE CARGA INICIAL ---");
+        System.out.println("Pacientes cargados: " + pacientesCargados.size());
+        System.out.println("Profesionales cargados: " + profControl.totalProfesionales());
+        System.out.println("Estudios cargados: " + estudiosCargados.size());
+        System.out.println("--------------------------------\n");
 
-// 2. Buscamos al paciente (usando tu método getListaPaciente)
-// Tomamos el primero de la lista para la prueba
-Paciente pacAsignado = pControl.getListaPaciente().get(0);
-
-// 3. Creamos el Estudio (Uniendo todas las piezas del Modelo)
-Fecha hoy = new Fecha(3, 5, 2026);
-Fecha entrega = new Fecha(10, 5, 2026);
-List<Integer> codigosAnalisis = new java.util.ArrayList<>();
-codigosAnalisis.add(246); // Agregamos Glucemia por código
-
-Estudio nuevoEstudio = new Estudio(pacAsignado, profAsignado, hoy, entrega, "En elaboración", codigosAnalisis);
-
-eControl.listaAgregarEstudio();
-// 4. Verificamos que todo esté conectado
-System.out.println("--- RESUMEN DEL ESTUDIO CREATIVO ---");
-System.out.println("Paciente: " + nuevoEstudio.getPaciente().getApellido());
-System.out.println("Médico: " + nuevoEstudio.getProfesional().getApellido());
-System.out.println("Fecha Realización: " + nuevoEstudio.getRealizacion().getDia() + "/" + nuevoEstudio.getRealizacion().getMes());
-    
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-    
-    // Vista jere
-     
-    VentanaPrincipal ventana = new VentanaPrincipal(pControl, profControl, eControl);
-    ventana.setVisible(true);
-    
+        // 4. Arrancamos la interfaz gráfica pasándole los controladores ya llenos de datos
+        VentanaPrincipal ventana = new VentanaPrincipal(pControl, profControl, eControl);
+        ventana.setVisible(true);
     }
-
-
-
-
-    
 }

@@ -4,6 +4,10 @@ package Controlador;
 import Modelo.Profesional;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+
+
 
 public class ProfesionalControlador {
     
@@ -44,4 +48,8 @@ public class ProfesionalControlador {
     }
     return true;
 }
+        public List<Profesional> getListaProfesionales() {
+        return new ArrayList<>(mapaProfesionales.values());
+    }
+
 }

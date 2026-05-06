@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import Modelo.Fecha;
+import Controlador.ArchivoControlador;
 
 public class VentanaCargar extends javax.swing.JFrame {
 
@@ -549,6 +550,11 @@ public class VentanaCargar extends javax.swing.JFrame {
         pControl.setObraSocial(obraSocial);
         pControl.listaAgregarPaciente();
         pControl.prepararNuevoPaciente();
+        
+        // --- NUEVO: PERSISTENCIA EN ARCHIVO ---
+        ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+        archivoCtrl.guardarPacientes(pControl.getListaPaciente());
+        // --------------------------------------
 
         JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");
 
@@ -614,6 +620,11 @@ public class VentanaCargar extends javax.swing.JFrame {
 
     // 5. Guardar
     profControl.registrarNuevoProfesional(matriculaInt, apellido, nombre, telefono, mail);
+    
+    // --- NUEVO: PERSISTENCIA EN ARCHIVO ---
+        ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+        archivoCtrl.guardarProfesionales(profControl.getListaProfesionales());
+        // --------------------------------------
 
     JOptionPane.showMessageDialog(null, "Profesional guardado correctamente.");
 
@@ -710,6 +721,11 @@ public class VentanaCargar extends javax.swing.JFrame {
     }
     eControl.listaAgregarEstudio();
     eControl.prepararNuevoEstudio();
+    
+    // --- NUEVO: PERSISTENCIA EN ARCHIVO ---
+            ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+            archivoCtrl.guardarEstudios(eControl.getListaEstudios());
+            // --------------------------------------
 
     JOptionPane.showMessageDialog(null, "Estudio guardado correctamente.");
 
