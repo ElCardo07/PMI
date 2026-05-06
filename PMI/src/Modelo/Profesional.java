@@ -10,7 +10,7 @@ public class Profesional extends Persona {
     private int matricula;
 
     //Constructores
-    public Profesional(int matricula, String apellido, String nombre, int telefono, String mail) {
+    public Profesional(int matricula, String apellido, String nombre, String telefono, String mail) {
         super(apellido, nombre, telefono, mail);
         this.matricula = matricula;
     }

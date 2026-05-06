@@ -10,7 +10,7 @@ public class ProfesionalControlador {
     private final Map<Integer, Profesional> mapaProfesionales = new HashMap<>();
 
     // Este es el método que vas a usar desde la Vista
-    public void registrarNuevoProfesional(int matricula, String apellido, String nombre, int telefono, String mail) {
+    public void registrarNuevoProfesional(int matricula, String apellido, String nombre, String telefono, String mail) {
         
         // 1. Creamos la instancia del Modelo con los datos que nos pasaron
         Profesional nuevoPro = new Profesional(matricula, apellido, nombre, telefono, mail);
@@ -31,5 +31,17 @@ public class ProfesionalControlador {
         return mapaProfesionales.size();
     }
     
-    
+    public boolean telefonoValido(String telefono) { // verifica que el telefono sea valido
+    // Verifica que tenga entre 8 y 15 caracteres
+    if (telefono.length() < 8 || telefono.length() > 15) {
+        return false;
+    }
+    // Verifica que solo tenga números (permite el 0 adelante)
+    for (char c : telefono.toCharArray()) {
+        if (!Character.isDigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
 }

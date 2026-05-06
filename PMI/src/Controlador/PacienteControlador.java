@@ -46,7 +46,7 @@ public class PacienteControlador {
         paciente.setMail(mail);
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         paciente.setTelefono(telefono);
     }
 
@@ -90,6 +90,29 @@ public class PacienteControlador {
         }
     }
     return true;
+}   
+    public boolean telefonoValido(String telefono) { // verifica que el telefono sea valido
+    // Verifica que tenga entre 8 y 15 caracteres
+    if (telefono.length() < 8 || telefono.length() > 15) {
+        return false;
+    }
+    // Verifica que solo tenga números (permite el 0 adelante)
+    for (char c : telefono.toCharArray()) {
+        if (!Character.isDigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+    
+    
+    public Paciente buscarPacientePorDni(String dni) {// Buscar paciente por su dni  (para vista)
+    for (Paciente p : listaPaciente) {
+        if (p.getDni().equals(dni)) {
+            return p;
+        }
+    }
+    return null;
 }
 }
 

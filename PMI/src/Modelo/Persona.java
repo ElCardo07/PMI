@@ -4,10 +4,10 @@ public abstract class Persona {
     
     private String apellido;
     private String nombre;
-    private int telefono;
+    private String telefono;
     private String mail;
 
-    public Persona(String apellido, String nombre, int telefono, String mail) {
+    public Persona(String apellido, String nombre, String telefono, String mail) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -18,7 +18,7 @@ public abstract class Persona {
        this.apellido = "";
        this.mail = "";
        this.nombre= "";
-       this.telefono = 0;
+       this.telefono = "";
        
    }
 
@@ -38,11 +38,11 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

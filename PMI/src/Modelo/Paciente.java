@@ -14,7 +14,7 @@ public class Paciente extends Persona {
     private String dni;
     
     //Constructores
-    public Paciente(boolean obraSocial, String dni, String apellido, String nombre, int telefono, String mail) {
+    public Paciente(boolean obraSocial, String dni, String apellido, String nombre, String telefono, String mail) {
         super(apellido, nombre, telefono, mail);
         this.obraSocial = obraSocial;
         this.dni = dni;

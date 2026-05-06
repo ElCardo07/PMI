@@ -18,7 +18,7 @@ public class PMI {
         pControl.setNombrePaciente("Juan");
         pControl.setApellidoPaciente("Gomez");
         pControl.setObraSocial(true);
-        pControl.setTelefono(266400);
+        pControl.setTelefono("266400");
         pControl.setMail("juan@mail.com");
         
         // 3. Ahora que el objeto interno 'paciente' del controlador está lleno,
@@ -28,7 +28,7 @@ public class PMI {
         System.out.println("Precarga terminada con exito.");
         
         // --- PRUEBA DE PROFESIONAL (HashMap) ---
-        profControl.registrarNuevoProfesional(1010, "Roccuzzo", "Antonela", 2664, "anto@mail.com");
+        profControl.registrarNuevoProfesional(1010, "Roccuzzo", "Antonela", "2664", "anto@mail.com");
         
         // --- MOSTRAR RESULTADOS ---
         System.out.println("Pacientes en lista: " + pControl.getListaPaciente().size());

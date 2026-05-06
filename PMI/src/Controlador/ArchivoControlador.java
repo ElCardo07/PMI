@@ -48,7 +48,7 @@ public class ArchivoControlador {
                 String dni = br.readLine(); // Leemos el DNI como String directamente
                 String apellido = br.readLine();
                 String nombre = br.readLine();
-                int tel = Integer.parseInt(br.readLine());
+                String tel = br.readLine();
                 String mail = br.readLine();
 
                 lista.add(new Paciente(obra, dni, apellido, nombre, tel, mail));
@@ -87,7 +87,7 @@ public class ArchivoControlador {
             String nom;
             while ((nom = br.readLine()) != null) {
                 String ape = br.readLine();
-                int tel = Integer.parseInt(br.readLine());
+                String tel = br.readLine();
                 String mail = br.readLine();
                 int mat = Integer.parseInt(br.readLine());
 
