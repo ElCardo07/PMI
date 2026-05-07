@@ -153,6 +153,11 @@ public class VentanaEliminar extends javax.swing.JFrame {
         });
 
         jButton6.setText("Volver");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -362,6 +367,12 @@ public class VentanaEliminar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Profesional eliminado con éxito.");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // BOTON DE VOLVER PROFESIONAL
+        ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
+        this.dispose(); // Cierra esta ventana de modificar
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

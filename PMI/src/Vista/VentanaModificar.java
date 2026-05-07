@@ -149,6 +149,11 @@ public class VentanaModificar extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En elaboracion", "Finalizado", "Retirado", "Enviado" }));
 
         jButton8.setText("Volver");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Guardar cambios");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -792,9 +797,12 @@ public class VentanaModificar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // BOTON DE VOLVER ESTUDIO
+        ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
+        this.dispose(); // Cierra esta ventana de modificar
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
