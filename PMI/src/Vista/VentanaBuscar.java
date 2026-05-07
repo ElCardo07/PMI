@@ -7,6 +7,13 @@ import Controlador.EstudioControlador;
 import Controlador.PacienteControlador;
 import Controlador.ProfesionalControlador;
 import javax.swing.JOptionPane;
+
+
+
+
+
+
+
 public class VentanaBuscar extends javax.swing.JFrame {
 
     private PacienteControlador pControl;
@@ -79,20 +86,46 @@ public class VentanaBuscar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Listar todos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buscar por DNI");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Sin obra social");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Con obra social");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setPreferredSize(new java.awt.Dimension(165, 75));
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton5.setText("Limpiar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Volver");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -155,14 +188,31 @@ public class VentanaBuscar extends javax.swing.JFrame {
         jTabbedPane1.addTab("Paciente", jPanel1);
 
         jButton7.setText("Listar todos");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Buscar por matrícula");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
         jButton9.setText("Volver");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Limpiar");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -214,13 +264,25 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Profesional", jPanel2);
 
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
 
         jButton11.setText("Volver");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Limpiar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Estado");
 
@@ -240,10 +302,25 @@ public class VentanaBuscar extends javax.swing.JFrame {
         jLabel4.setText("Fecha");
 
         jButton14.setText("Buscar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setText("Buscar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Buscar");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("/");
 
@@ -352,17 +429,255 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // BOTON VOLVER PACIENTE
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        // BOTON LIMPIAR PROFESIONAL
+        jTextField2.setText("");
+        jTextArea2.setText("");
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        // BOTON BUSCAR POR ESTADO ESTUDIO
+        String estadoBuscado = jComboBox1.getSelectedItem().toString();
+        jTextArea3.setText("ESTUDIOS EN ESTADO: " + estadoBuscado + "\n\n");
+        boolean hay = false;
+        
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getEstado().equals(estadoBuscado)) {
+                
+                Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+                String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+                
+                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
+
+                jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+                jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+                jTextArea3.append("-------------------------\n");
+                hay = true;
+            }
+        }
+        if (!hay) jTextArea3.append("No hay estudios en este estado.");
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // BOTON BUSCAR POR DNI PACIENTE
+        String dni = jTextField1.getText().trim();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
+            return;
+        }
+        
+        jTextArea1.setText(""); // Limpiamos la pantalla
+        Modelo.Paciente p = pControl.buscarPacientePorDni(dni);
+        
+        if (p != null) {
+            jTextArea1.setText(p.toString());
+        } else {
+            jTextArea1.setText("No se encontró ningún paciente con el DNI: " + dni);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //BOTON LISTAR TODOS PACIENTE
+        jTextArea1.setText(""); // Limpiamos
+        if (pControl.getListaPaciente().isEmpty()) {
+            jTextArea1.setText("No hay pacientes registrados en el sistema.");
+            return;
+        }
+        for (Modelo.Paciente p : pControl.getListaPaciente()) {
+            jTextArea1.append(p.toString() + "\n-------------------------\n");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // BOTON CON OBRA SOCIAL PACIENTE
+        jTextArea1.setText("PACIENTES CON OBRA SOCIAL:\n\n");
+        boolean hay = false;
+        for (Modelo.Paciente p : pControl.getListaPaciente()) {
+            if (p.isObraSocial()) { // Solo si tiene obra social (true)
+                jTextArea1.append(p.toString() + "\n-------------------------\n");
+                hay = true;
+            }
+        }
+        if (!hay) jTextArea1.append("No se encontraron pacientes con Obra Social.");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // BOTON SIN OBRA SOCIAL PACIENTE
+        jTextArea1.setText("PACIENTES SIN OBRA SOCIAL:\n\n");
+        boolean hay = false;
+        for (Modelo.Paciente p : pControl.getListaPaciente()) {
+            if (!p.isObraSocial()) { // Solo si NO tiene obra social (false)
+                jTextArea1.append(p.toString() + "\n-------------------------\n");
+                hay = true;
+            }
+        }
+        if (!hay) jTextArea1.append("No se encontraron pacientes sin Obra Social.");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // BOTON LIMPIAR PACIENTE
+        jTextField1.setText("");
+        jTextArea1.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // BOTON LISTAR TODOS PROFESIONAL
+        jTextArea2.setText("");
+        if (profControl.getListaProfesionales().isEmpty()) {
+            jTextArea2.setText("No hay profesionales registrados.");
+            return;
+        }
+        // Usamos .values() porque es un HashMap
+        for (Modelo.Profesional prof : profControl.getListaProfesionales()) {
+            jTextArea2.append(prof.toString() + "\n-------------------------\n");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // BUSCAR POR MATRICULA PROFESIONAL
+            String matStr = jTextField2.getText().trim();
+        if (!matStr.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
+            return;
+        }
+        
+        jTextArea2.setText("");
+        Modelo.Profesional prof = profControl.buscarProfesional(Integer.parseInt(matStr));
+        
+        if (prof != null) {
+            jTextArea2.setText(prof.toString());
+        } else {
+            jTextArea2.setText("No se encontró el profesional con matrícula: " + matStr);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // BOTON BUSCAR POR DNI ESTUDIO
+            String dni = jTextField7.getText().trim();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
+            return;
+        }
+
+        jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
+        boolean hay = false;
+        
+        // Buscamos al paciente completo en el controlador principal
+        Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
+        String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
+        
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getPaciente().getDni().equals(dni)) {
+                
+                // Buscamos al profesional completo usando su matrícula
+                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+
+                jTextArea3.append("Paciente: " + nombrePac + "\n");
+                jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+                jTextArea3.append("Estado: " + e.getEstado() + "\n");
+                jTextArea3.append("-------------------------\n");
+                hay = true;
+            }
+        }
+        if (!hay) jTextArea3.append("No se encontraron estudios para este DNI.");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // BOTON BUSCAR POR MATRICULA ESTUDIO
+        String matStr = jTextField6.getText().trim();
+        if (!matStr.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
+            return;
+        }
+        
+        int mat = Integer.parseInt(matStr);
+        jTextArea3.setText("ESTUDIOS A CARGO DEL PROFESIONAL MATRÍCULA: " + mat + "\n\n");
+        boolean hay = false;
+        
+        Modelo.Profesional profCompleto = profControl.buscarProfesional(mat);
+        String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getProfesional().getMatricula() == mat) {
+                
+                Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+                String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+
+                jTextArea3.append("Profesional a cargo: " + nombreProf + "\n");
+                jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+                jTextArea3.append("Estado: " + e.getEstado() + "\n");
+                jTextArea3.append("-------------------------\n");
+                hay = true;
+            }
+        }
+        if (!hay) jTextArea3.append("No se encontraron estudios para esta matrícula.");
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // BOTON BUSCAR POR FECHA ESTUDIO
+        try {
+            int dia = Integer.parseInt(jTextField3.getText().trim());
+            int mes = Integer.parseInt(jTextField4.getText().trim());
+            int anio = Integer.parseInt(jTextField5.getText().trim());
+            
+            jTextArea3.setText("ESTUDIOS REALIZADOS EL " + dia + "/" + mes + "/" + anio + "\n\n");
+            boolean hay = false;
+            
+            for (Modelo.Estudio e : eControl.getListaEstudios()) {
+                if (e.getRealizacion().getDia() == dia && e.getRealizacion().getMes() == mes && e.getRealizacion().getAnio() == anio) {
+                    
+                    Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+                    String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+                    
+                    Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+                    String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
+
+                    jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+                    jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+                    jTextArea3.append("Estado: " + e.getEstado() + "\n");
+                    jTextArea3.append("-------------------------\n");
+                    hay = true;
+                }
+            }
+            if (!hay) jTextArea3.append("No se encontraron estudios en esa fecha.");
+            
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese números válidos para la fecha.");
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // BOTON LIMPIAR ESTUDIO
+        jTextField7.setText("");
+        jTextField6.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextArea3.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // BOTON VOLVER ESTUDIO
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        //BOTON VOLVER PROFESIONAL
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
