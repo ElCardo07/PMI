@@ -67,10 +67,10 @@ public class PacienteControlador {
     public void mostrar(){
         for(Paciente p : listaPaciente){
             if(p.isObraSocial()){
-                p.mostrarPaciente();
+                p.toString();
             }else{
                 if(!p.isObraSocial()){
-                    p.mostrarPaciente();
+                    p.toString();
                 }
             }
         }

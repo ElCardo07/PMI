@@ -51,5 +51,7 @@ public class ProfesionalControlador {
         public List<Profesional> getListaProfesionales() {
         return new ArrayList<>(mapaProfesionales.values());
     }
-
+   public void eliminarProfesional(int matricula) {
+        mapaProfesionales.remove(matricula);
+    }
 }

@@ -30,13 +30,15 @@ public class Profesional extends Persona {
 
     //toString
     @Override
+    
     public String toString() {
-        return "\nMatricula: " + matricula;
+        return "Profesional:\n" +
+               "Apellido: " + getApellido() + "\n" +
+               "Nombre: " + getNombre() + "\n" +
+               "Telefono: " + getTelefono() + "\n" +
+               "Mail: " + getMail() + "\n" +
+               "Matricula: " + matricula;
     }
-    @Override
-    public void mostrarDatos() {
-        super.mostrarDatos();
-        System.out.println("Matricula: "+ matricula);
-    }
+    
     
 }

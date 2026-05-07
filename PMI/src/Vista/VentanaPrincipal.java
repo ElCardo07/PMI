@@ -139,6 +139,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Boton de eliminar datos
+        // Creamos la ventana de eliminar pasándole los controladores y esta ventana principal (this)
+        VentanaEliminar ventanaEliminar = new VentanaEliminar(pControl, profControl, eControl, this);
+        ventanaEliminar.setVisible(true); // Mostramos la nueva ventana
+        this.setVisible(false); // Ocultamos el menú principal
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

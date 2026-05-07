@@ -43,27 +43,24 @@ public class Paciente extends Persona {
     }
     @Override
     public String toString() {
-        return "Paciente:\nApellido: " + getApellido() + "\nNombre: " + getNombre() + "\nTelefono: "+ getTelefono() + "\nMail: " + getMail() + "\nObraSocial: " + obraSocial + "\nDni: " + dni;
-    }
-    //muestra los datos de paciente, conecta los datos de persona y paciente(obrasocial y dni) con el super para mostrar todo junto
-    @Override 
-    public void mostrarDatos(){
-        super.mostrarDatos();
-        System.out.println("\nObra social: " + obraSocial);
-        System.out.println("Dni: " + dni);
-    }
-    
-    //muestro un paciente
-    public void mostrarPaciente() {
-        System.out.println("Dni: " + dni);
-        System.out.println("Apellido: " + getApellido());
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Telefono : " + getTelefono());
-        System.out.println("Mail: " + getMail());
-        if(obraSocial){
-            System.out.println("Obra social: Si");
-        }else{
-            System.out.println("Obra social: No");
+        // Usamos una variable auxiliar para traducir el booleano a texto
+        String textoObraSocial;
+        if (this.obraSocial) {
+            textoObraSocial = "Sí";
+        } else {
+            textoObraSocial = "No";
         }
+        
+        return "Paciente:\n" +
+               "Apellido: " + getApellido() + "\n" +
+               "Nombre: " + getNombre() + "\n" +
+               "Telefono: "+ getTelefono() + "\n" +
+               "Mail: " + getMail() + "\n" +
+               "Obra Social: " + textoObraSocial + "\n" +
+               "Dni: " + dni;
     }
+
+    
 }
+   
+
