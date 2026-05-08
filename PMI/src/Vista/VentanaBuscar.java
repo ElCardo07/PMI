@@ -176,15 +176,11 @@ public class VentanaBuscar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
@@ -216,6 +212,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextArea2.setRows(5);
@@ -278,6 +275,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
         jTextArea3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextArea3.setRows(5);
@@ -485,13 +483,18 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // BOTON BUSCAR POR ESTADO ESTUDIO
-        String estadoBuscado = jComboBox1.getSelectedItem().toString();
+        // --- ATENCIÓN ACÁ: Verificá que este sea el nombre correcto de tu ComboBox de estado ---
+        String estadoBuscado = jComboBox1.getSelectedItem().toString().trim(); 
+        
         jTextArea3.setText("ESTUDIOS EN ESTADO: " + estadoBuscado + "\n\n");
         boolean hay = false;
         
         for (Modelo.Estudio e : eControl.getListaEstudios()) {
-            if (e.getEstado().equals(estadoBuscado)) {
+            
+            String estadoDelEstudio = e.getEstado();
+            if (estadoDelEstudio == null) estadoDelEstudio = "NULO";
+            // Comparamos
+            if (estadoDelEstudio.trim().equalsIgnoreCase(estadoBuscado)) {
                 
                 Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
                 String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
@@ -502,10 +505,14 @@ public class VentanaBuscar extends javax.swing.JFrame {
                 jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
                 jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
                 jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+                jTextArea3.append("Estado: " + estadoDelEstudio.trim() + "\n");
                 jTextArea3.append("-------------------------\n");
                 hay = true;
             }
         }
+        
+        System.out.println("=========================================\n");
+        
         if (!hay) jTextArea3.append("No hay estudios en este estado.");
     }//GEN-LAST:event_jButton13ActionPerformed
 

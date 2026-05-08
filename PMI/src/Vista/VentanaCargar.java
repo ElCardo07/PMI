@@ -310,7 +310,7 @@ public class VentanaCargar extends javax.swing.JFrame {
         });
 
         cmbEstado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En elaboración", "Finalizado", "Retirado", "Enviado" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En elaboracion", "Finalizado", "Retirado", "Enviado" }));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEstadoActionPerformed(evt);
@@ -554,9 +554,7 @@ public class VentanaCargar extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10))
                                 .addGap(21, 21, 21))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMatriculaProfesional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
