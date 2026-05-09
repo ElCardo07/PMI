@@ -196,9 +196,7 @@ public class VentanaModificar extends javax.swing.JFrame {
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -311,7 +309,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         jLabel17.setText("Estado:");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En elaboración", "Finalizado", "Retirado", "Enviado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En elaboracion", "Finalizado", "Retirado", "Enviado" }));
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton8.setText("Volver");
@@ -501,6 +499,11 @@ public class VentanaModificar extends javax.swing.JFrame {
         jLabel5.setText("Telefono:");
 
         jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField16ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Mail:");
@@ -536,21 +539,21 @@ public class VentanaModificar extends javax.swing.JFrame {
                         .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(jTextField17)
+                            .addComponent(jTextField16)
+                            .addComponent(jTextField15)
+                            .addComponent(jTextField14))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -680,43 +683,31 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //BOTON BUSCAR PROFESIONAL
-        if (pacienteActual == null) {
-            JOptionPane.showMessageDialog(this, "Primero debe buscar un profesional válido o existente.");
+        String matStr = jTextField13.getText().trim(); 
+
+        // Validamos que haya puesto números
+        if (matStr.isEmpty() || !matStr.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica válida para buscar.");
             return;
         }
 
-        String nuevoTel = jTextField7.getText().trim();
-        String nuevoMail = jTextField9.getText().trim();
-        boolean nuevaOS = jCheckBox1.isSelected();
-
-        if (nuevoTel.isEmpty() || nuevoMail.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El teléfono y el mail no pueden quedar vacíos.");
-            return;
-        }
-        if (!pControl.telefonoValido(nuevoTel)) {
-            JOptionPane.showMessageDialog(this, "El teléfono ingresado no es válido.");
-            return;
-        }
-
-        // Modificamos en RAM
-        pacienteActual.setTelefono(nuevoTel);
-        pacienteActual.setMail(nuevoMail);
-        pacienteActual.setObraSocial(nuevaOS);
-
-        // Modificamos en Disco (.txt)
-        ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
-        archivoCtrl.guardarPacientes(pControl.getListaPaciente());
-
-        JOptionPane.showMessageDialog(this, "Datos del paciente actualizados con éxito.");
+        int matricula = Integer.parseInt(matStr);
         
-        // Limpiamos todo
-        pacienteActual = null;
-        jTextField1.setText("");
-        jTextField3.setText("");
-        jTextField5.setText("");
-        jTextField7.setText("");
-        jTextField9.setText("");
-        jCheckBox1.setSelected(false);
+        // Lo buscamos en el controlador
+        profesionalActual = profControl.buscarProfesional(matricula); 
+
+        if (profesionalActual != null) {
+            // Rellenamos los campos de la pantalla con los datos viejos para que los vea
+            jTextField14.setText(profesionalActual.getNombre());
+            jTextField15.setText(profesionalActual.getApellido());
+            jTextField16.setText(profesionalActual.getTelefono());
+            jTextField17.setText(profesionalActual.getMail());
+            
+            JOptionPane.showMessageDialog(this, "Profesional encontrado. Ya puede editar su Teléfono y Mail.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún profesional con esa matrícula.");
+            profesionalActual = null; // Limpiamos por las dudas
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -851,13 +842,45 @@ public class VentanaModificar extends javax.swing.JFrame {
         String estadoSeleccionado = jComboBox1.getSelectedItem().toString();
 
         try {
-            // Si el usuario ingresó una fecha de entrega, creamos el objeto Fecha
+            // Si el usuario ingresó una fecha de entrega, validamos y creamos el objeto
             if (!diaStr.isEmpty() && !mesStr.isEmpty() && !anioStr.isEmpty()) {
                 int dia = Integer.parseInt(diaStr);
                 int mes = Integer.parseInt(mesStr);
                 int anio = Integer.parseInt(anioStr);
                 
-                // Creamos un objeto de tu clase Fecha (asegurate de tener este constructor)
+                // --- NUEVAS VALIDACIONES LÓGICAS DE FECHA ---
+                // Le preguntamos a la PC el año actual
+                java.time.LocalDate hoy = java.time.LocalDate.now();
+                int anioActual = hoy.getYear();
+
+                // 1. Rango de año dinámico (No menor al año actual de la PC, ni mayor a 10 años en el futuro)
+                if (anio < anioActual || anio > anioActual + 1000000) {
+                    JOptionPane.showMessageDialog(this, "El año ingresado no es válido (debe ser mayor a: " + anioActual + ").");
+                    return;
+                }
+                // --- NUEVAS VALIDACIONES LÓGICAS DE FECHA ---
+                if (mes < 1 || mes > 12) {
+                    JOptionPane.showMessageDialog(this, "El mes ingresado no es válido (debe ser entre 1 y 12).");
+                    return; // Corta la ejecución para que no guarde
+                }
+                if (dia < 1 || dia > 31) {
+                    JOptionPane.showMessageDialog(this, "El día ingresado no es válido (debe ser entre 1 y 31).");
+                    return;
+                }
+                
+                // Filtro "Pro": Meses con 30 días
+                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) {
+                    JOptionPane.showMessageDialog(this, "Error: El mes " + mes + " solo tiene 30 días.");
+                    return;
+                }
+                // Filtro "Pro": Febrero
+                if (mes == 2 && dia > 29) {
+                    JOptionPane.showMessageDialog(this, "Error: Febrero no puede tener más de 29 días.");
+                    return;
+                }
+                // --------------------------------------------
+                
+                // Si pasa todos los filtros de arriba, creamos el objeto Fecha con seguridad
                 Modelo.Fecha nuevaFechaEntrega = new Modelo.Fecha(dia, mes, anio);
                 estudioActual.setEntrega(nuevaFechaEntrega);
             }
@@ -872,7 +895,6 @@ public class VentanaModificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Estudio actualizado con éxito.");
 
             // 3. Limpiamos la pantalla
-        // 3. Limpiamos la pantalla (ACORDATE DE PONER TUS TEXTFIELDS ACÁ TAMBIÉN)
             estudioActual = null;
             jTextField11.setText(""); 
             jTextField12.setText(""); 
@@ -901,6 +923,10 @@ public class VentanaModificar extends javax.swing.JFrame {
         ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
         this.dispose(); // Cierra esta ventana de modificar
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField16ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

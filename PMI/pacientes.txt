@@ -1,12 +1,18 @@
 true
-21570306
-Cardozo
-Oscar Antonio
-2657643501
-oscarcardozo510@gmail.com
-true
+46617678
+Di Betta
+Jeremias Oscar
+2616151582
+jereOs@gmail.com
+false
 46545020
 Cardozo
 Juan Ezequiel
-2664850793
++5491161958568
 cardoj565@gmail.com
+true
+47127830
+Craizar
+Ezequiel Tomas
++5491167832836
+echigod@gmail.com

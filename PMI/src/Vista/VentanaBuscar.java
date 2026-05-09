@@ -148,26 +148,24 @@ public class VentanaBuscar extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton3))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +237,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(80, 80, 80)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -252,23 +250,23 @@ public class VentanaBuscar extends javax.swing.JFrame {
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(340, 340, 340))
+                .addGap(79, 79, 79))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(68, 68, 68))
         );
 
         jTabbedPane1.addTab("Profesional", jPanel2);
@@ -365,7 +363,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,7 +378,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
                                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 19, Short.MAX_VALUE)
+                                .addGap(0, 22, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -485,35 +483,43 @@ public class VentanaBuscar extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // --- ATENCIÓN ACÁ: Verificá que este sea el nombre correcto de tu ComboBox de estado ---
         String estadoBuscado = jComboBox1.getSelectedItem().toString().trim(); 
+    
+    jTextArea3.setText("ESTUDIOS EN ESTADO: " + estadoBuscado + "\n\n");
+    boolean hay = false;
+    
+    for (Modelo.Estudio e : eControl.getListaEstudios()) {
         
-        jTextArea3.setText("ESTUDIOS EN ESTADO: " + estadoBuscado + "\n\n");
-        boolean hay = false;
+        String estadoDelEstudio = e.getEstado();
+        if (estadoDelEstudio == null) estadoDelEstudio = "NULO";
         
-        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+        if (estadoDelEstudio.trim().equalsIgnoreCase(estadoBuscado)) {
             
-            String estadoDelEstudio = e.getEstado();
-            if (estadoDelEstudio == null) estadoDelEstudio = "NULO";
-            // Comparamos
-            if (estadoDelEstudio.trim().equalsIgnoreCase(estadoBuscado)) {
-                
-                Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
-                String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
-                
-                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
-                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
+            Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+            String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+            
+            Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+            String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
 
-                jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
-                jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
-                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
-                jTextArea3.append("Estado: " + estadoDelEstudio.trim() + "\n");
-                jTextArea3.append("-------------------------\n");
-                hay = true;
+            jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+            jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+            jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+            jTextArea3.append("Estado: " + estadoDelEstudio.trim() + "\n");
+
+            // --- MOSTRAR LOS ANÁLISIS ---
+            jTextArea3.append("Análisis realizados:\n");
+            for (Integer cod : e.getAnalisis()) {
+                // Buscamos el nombre del análisis usando el catálogo en eControl
+                String nombreAnalisis = eControl.obtenerNombre(cod);
+                jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
             }
+            // ----------------------------
+
+            jTextArea3.append("-------------------------\n");
+            hay = true;
         }
-        
-        System.out.println("=========================================\n");
-        
-        if (!hay) jTextArea3.append("No hay estudios en este estado.");
+    }
+    
+    if (!hay) jTextArea3.append("No hay estudios en este estado.");
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -611,35 +617,48 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // BOTON BUSCAR POR DNI ESTUDIO
-            String dni = jTextField7.getText().trim();
-        if (dni.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
-            return;
-        }
+    String dni = jTextField7.getText().trim();
+    if (dni.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
+        return;
+    }
 
-        jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
-        boolean hay = false;
-        
-        // Buscamos al paciente completo en el controlador principal
-        Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
-        String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
-        
-        for (Modelo.Estudio e : eControl.getListaEstudios()) {
-            if (e.getPaciente().getDni().equals(dni)) {
-                
-                // Buscamos al profesional completo usando su matrícula
-                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
-                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+    jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
+    boolean hay = false;
+    
+    // Buscamos al paciente completo en el controlador principal
+    Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
+    String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
+    
+    for (Modelo.Estudio e : eControl.getListaEstudios()) {
+        if (e.getPaciente().getDni().equals(dni)) {
+            
+            // Buscamos al profesional completo usando su matrícula
+            Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+            String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
 
-                jTextArea3.append("Paciente: " + nombrePac + "\n");
-                jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
-                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
-                jTextArea3.append("Estado: " + e.getEstado() + "\n");
-                jTextArea3.append("-------------------------\n");
-                hay = true;
+            jTextArea3.append("Paciente: " + nombrePac + "\n");
+            jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+            jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+            jTextArea3.append("Estado: " + e.getEstado() + "\n");
+
+            // --- SECCIÓN DE ANÁLISIS AGREGADA ---
+            jTextArea3.append("Análisis realizados:\n");
+            for (Integer cod : e.getAnalisis()) {
+                // Buscamos el nombre del análisis en el catálogo del controlador
+                String nombreAnalisis = eControl.obtenerNombre(cod);
+                jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
             }
+            // ------------------------------------
+
+            jTextArea3.append("-------------------------\n");
+            hay = true;
         }
-        if (!hay) jTextArea3.append("No se encontraron estudios para este DNI.");
+    }
+    
+    if (!hay) {
+        jTextArea3.append("No se encontraron estudios para este DNI.");
+    }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -649,62 +668,83 @@ public class VentanaBuscar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
             return;
         }
+    
+    int mat = Integer.parseInt(matStr);
+    jTextArea3.setText("ESTUDIOS A CARGO DEL PROFESIONAL MATRÍCULA: " + mat + "\n\n");
+    boolean hay = false;
+    
+    Modelo.Profesional profCompleto = profControl.buscarProfesional(mat);
+    String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+
+    for (Modelo.Estudio e : eControl.getListaEstudios()) {
+        if (e.getProfesional().getMatricula() == mat) {
+            
+            Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+            String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+
+            jTextArea3.append("Profesional a cargo: " + nombreProf + "\n");
+            jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+            jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+            jTextArea3.append("Estado: " + e.getEstado() + "\n");
+
+            // --- SECCIÓN DE ANÁLISIS ---
+            jTextArea3.append("Análisis realizados:\n");
+            for (Integer cod : e.getAnalisis()) {
+                // Buscamos el nombre del análisis en el catálogo
+                String nombreAnalisis = eControl.obtenerNombre(cod);
+                jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
+            }
+            // ----------------------------
+
+            jTextArea3.append("-------------------------\n");
+            hay = true;
+        }
+    }
+    if (!hay) jTextArea3.append("No se encontraron estudios para esta matrícula.");
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+       // BOTON BUSCAR POR FECHA ESTUDIO
+    try {
+        int dia = Integer.parseInt(jTextField3.getText().trim());
+        int mes = Integer.parseInt(jTextField4.getText().trim());
+        int anio = Integer.parseInt(jTextField5.getText().trim());
         
-        int mat = Integer.parseInt(matStr);
-        jTextArea3.setText("ESTUDIOS A CARGO DEL PROFESIONAL MATRÍCULA: " + mat + "\n\n");
+        jTextArea3.setText("ESTUDIOS REALIZADOS EL " + dia + "/" + mes + "/" + anio + "\n\n");
         boolean hay = false;
         
-        Modelo.Profesional profCompleto = profControl.buscarProfesional(mat);
-        String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
-
         for (Modelo.Estudio e : eControl.getListaEstudios()) {
-            if (e.getProfesional().getMatricula() == mat) {
+            // Comparamos día, mes y año
+            if (e.getRealizacion().getDia() == dia && e.getRealizacion().getMes() == mes && e.getRealizacion().getAnio() == anio) {
                 
                 Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
                 String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+                
+                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
 
-                jTextArea3.append("Profesional a cargo: " + nombreProf + "\n");
                 jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
-                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
-                jTextArea3.append("Estado: " + e.getEstado() + "\n");
+                jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
+                jTextArea3.append("Estado: " + e.getEstado().trim() + "\n");
+
+                // --- SECCIÓN DE ANÁLISIS ---
+                jTextArea3.append("Análisis realizados:\n");
+                for (Integer cod : e.getAnalisis()) {
+                    // Buscamos el nombre del análisis en el catálogo del controlador
+                    String nombreAnalisis = eControl.obtenerNombre(cod);
+                    jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
+                }
+                // ----------------------------
+
                 jTextArea3.append("-------------------------\n");
                 hay = true;
             }
         }
-        if (!hay) jTextArea3.append("No se encontraron estudios para esta matrícula.");
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // BOTON BUSCAR POR FECHA ESTUDIO
-        try {
-            int dia = Integer.parseInt(jTextField3.getText().trim());
-            int mes = Integer.parseInt(jTextField4.getText().trim());
-            int anio = Integer.parseInt(jTextField5.getText().trim());
-            
-            jTextArea3.setText("ESTUDIOS REALIZADOS EL " + dia + "/" + mes + "/" + anio + "\n\n");
-            boolean hay = false;
-            
-            for (Modelo.Estudio e : eControl.getListaEstudios()) {
-                if (e.getRealizacion().getDia() == dia && e.getRealizacion().getMes() == mes && e.getRealizacion().getAnio() == anio) {
-                    
-                    Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
-                    String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
-                    
-                    Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
-                    String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : String.valueOf(e.getProfesional().getMatricula());
-
-                    jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
-                    jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
-                    jTextArea3.append("Estado: " + e.getEstado() + "\n");
-                    jTextArea3.append("-------------------------\n");
-                    hay = true;
-                }
-            }
-            if (!hay) jTextArea3.append("No se encontraron estudios en esa fecha.");
-            
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Ingrese números válidos para la fecha.");
-        }
+        if (!hay) jTextArea3.append("No se encontraron estudios en esa fecha.");
+        
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Ingrese números válidos para la fecha.");
+    }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
