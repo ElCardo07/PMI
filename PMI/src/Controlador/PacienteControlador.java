@@ -59,7 +59,7 @@ public class PacienteControlador {
         listaPaciente.remove(paciente);
     }
     
-        // Agregá esto en PacienteControlador.java
+    // Agregá esto en PacienteControlador.java
     public List<Paciente> getListaPaciente() {
         return listaPaciente;
 }
@@ -75,12 +75,14 @@ public class PacienteControlador {
             }
         }
     }
+    
     public void prepararNuevoPaciente() {
     this.paciente = new Paciente(); // Crea un paciente limpio para la próxima carga
 }
     //Detalles
     
-    public boolean dniValido(String dni) {//Verifica que el dni tenga en 7 u 8 caracteres 
+    //Verifica que el dni tenga en 7 u 8 caracteres 
+    public boolean dniValido(String dni) {
     if (dni.length() != 7 && dni.length() != 8) {
         return false;
     }
@@ -91,7 +93,9 @@ public class PacienteControlador {
     }
     return true;
 }   
-    public boolean telefonoValido(String telefono) { // verifica que el telefono sea valido
+
+    // verifica que el telefono sea valido
+    public boolean telefonoValido(String telefono) { 
     // Verifica que tenga entre 8 y 15 caracteres
     if (telefono.length() < 8 || telefono.length() > 15) {
         return false;
@@ -105,8 +109,8 @@ public class PacienteControlador {
     return true;
 }
     
-    
-    public Paciente buscarPacientePorDni(String dni) {// Buscar paciente por su dni  (para vista)
+    // Buscar paciente por su dni  (para vista)
+    public Paciente buscarPacientePorDni(String dni) {
     for (Paciente p : listaPaciente) {
         if (p.getDni().equals(dni)) {
             return p;

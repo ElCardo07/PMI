@@ -13,29 +13,30 @@ public class ProfesionalControlador {
     
     private final Map<Integer, Profesional> mapaProfesionales = new HashMap<>();
 
-    // Este es el método que vas a usar desde la Vista
+    // Este es el metodo que se usa en la vista
     public void registrarNuevoProfesional(int matricula, String apellido, String nombre, String telefono, String mail) {
         
-        // 1. Creamos la instancia del Modelo con los datos que nos pasaron
+        // Crea la instancia del modelo 
         Profesional nuevoPro = new Profesional(matricula, apellido, nombre, telefono, mail);
         
-        // 2. Lo registramos en el HashMap usando la matrícula como CLAVE
+        //  Se agrega en el HashMap usando la matricula como clave
         mapaProfesionales.put(matricula, nuevoPro);
         
         System.out.println("Profesional " + nombre + " registrado con exito.");
     }
     
-    // Método para buscar un médico (esto quita el aviso de "never read")
+    // Metodo para buscar un profesional
     public Profesional buscarProfesional(int matricula) {
         return mapaProfesionales.get(matricula);
     }
 
-    // Método para saber cuántos médicos hay registrados
+    // Metodo para saber cuantos profesionales hay registrados
     public int totalProfesionales() {
         return mapaProfesionales.size();
     }
     
-    public boolean telefonoValido(String telefono) { // verifica que el telefono sea valido
+    // Verifica que el telefono sea valido
+    public boolean telefonoValido(String telefono) { 
     // Verifica que tenga entre 8 y 15 caracteres
     if (telefono.length() < 8 || telefono.length() > 15) {
         return false;

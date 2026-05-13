@@ -60,7 +60,6 @@ public abstract class Persona {
     }
     public void mostrarDatos() {
     System.out.println(this.toString());
-    // o simplemente: System.out.println(this);
     
     
 }  

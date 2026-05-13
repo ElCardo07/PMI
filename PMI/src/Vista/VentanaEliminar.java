@@ -30,7 +30,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); // Centra la ventana
     }
 
-    // Constructor por defecto (lo dejamos por si el editor de diseño lo necesita)
+    // Constructor por defecto 
     public VentanaEliminar() {
         initComponents();
     }
@@ -247,7 +247,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //BOTON BUSCAR PACIENTE
+       //Boton buscar paciente
        String dni = jTextField2.getText().trim();
         
         if (dni.isEmpty()) {
@@ -266,7 +266,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // BOTON ELIMINAR PACIENTE
+        // Boton eliminar paciente
         String dni = jTextField2.getText().trim();
         Paciente p = pControl.buscarPacientePorDni(dni);
 
@@ -275,15 +275,14 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return;
         }
 
-        // --- REGLA DE ORO DE LA CÁTEDRA ---
-        // Verificamos si tiene estudios vinculados usando tu método
+        // Verifica si tiene estudios vinculados usando el metodo
         int cantEstudios = eControl.cantidadEstudiosPorPaciente(dni);
         if (cantEstudios > 0) {
             JOptionPane.showMessageDialog(this, "ERROR: No se puede eliminar el paciente.\nTiene " + cantEstudios + " estudio(s) asociado(s).", "Violación de Integridad", JOptionPane.ERROR_MESSAGE);
-            return; // Cortamos el proceso acá, NO LO BORRA.
+            return; // Cortamos el proceso aca, no lo borra.
         }
 
-        // Si pasó la regla, mostramos el cartelito de confirmación que te prometí
+        // Si paso la regla, mostramos el cartelito de confirmacion
         int confirmacion = JOptionPane.showConfirmDialog(this,
             "¿Está completamente seguro que desea eliminar a " + p.getNombre() + " " + p.getApellido() + "?\nEsta acción no se puede deshacer.",
             "Confirmar Eliminación",
@@ -291,14 +290,14 @@ public class VentanaEliminar extends javax.swing.JFrame {
             JOptionPane.WARNING_MESSAGE);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            // 1. Lo borramos de la lista de RAM
+            // Lo borra de la lista de RAM
             pControl.listaEliminarPaciente(p);
             
-            // 2. Lo borramos físicamente del archivo .txt (¡Persistencia!)
+            // Lo borra fisicamente del archivo .txt 
             ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
             archivoCtrl.guardarPacientes(pControl.getListaPaciente());
             
-            // 3. Limpiamos la pantalla
+            // Limpia la pantalla
             jTextField2.setText("");
             jTextArea2.setText("");
             JOptionPane.showMessageDialog(this, "Paciente eliminado con éxito.");
@@ -312,7 +311,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // BOTON BUSSCAR PROFESI0NAL
+        // Boton buscar profesional
         String matriculaStr = jTextField1.getText().trim();
         
         if (matriculaStr.isEmpty()) {
@@ -337,7 +336,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // BOTON ELIMINAR PROFESIONAL
+        // Boton eliminar profesional
         String matriculaStr = jTextField1.getText().trim();
         
         if (!matriculaStr.matches("\\d+")) {
@@ -353,15 +352,14 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return;
         }
 
-        // --- REGLA DE ORO DE LA CÁTEDRA ---
-        // Verificamos si tiene estudios usando tu método filtrarPorProfesional
+        // Verifica si tiene estudios usando el metodo filtrarPorProfesional
         int cantEstudios = eControl.filtrarPorProfesional(matricula).size();
         if (cantEstudios > 0) {
             JOptionPane.showMessageDialog(this, "ERROR: No se puede eliminar al profesional.\nTiene " + cantEstudios + " estudio(s) asociado(s).", "Violación de Integridad", JOptionPane.ERROR_MESSAGE);
-            return; // Cortamos el proceso acá, NO LO BORRA.
+            return; // Cortamos el proceso aca, NO LO BORRA.
         }
 
-        // Si pasó la regla, mostramos el cartel de confirmación
+        // Si paso la verificacion, mostramos el cartel de confirmacion
         int confirmacion = JOptionPane.showConfirmDialog(this,
             "¿Está seguro que desea eliminar a la Dra./Dr. " + prof.getApellido() + "?\nEsta acción no se puede deshacer.",
             "Confirmar Eliminación",
@@ -369,14 +367,14 @@ public class VentanaEliminar extends javax.swing.JFrame {
             JOptionPane.WARNING_MESSAGE);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            // 1. Borramos del mapa de RAM
+            // Borramos del mapa de RAM
             profControl.eliminarProfesional(matricula);
             
-            // 2. Persistencia en archivo (¡Se guarda en el .txt al instante!)
+            // Persistencia en archivo 
             ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
             archivoCtrl.guardarProfesionales(profControl.getListaProfesionales());
             
-            // 3. Limpiamos la pantalla
+            // Limpia la pantalla
             jTextField1.setText("");
             jTextArea1.setText("");
             JOptionPane.showMessageDialog(this, "Profesional eliminado con éxito.");
@@ -384,7 +382,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // BOTON DE VOLVER PROFESIONAL
+        // Boton de volver profesional
         ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
         this.dispose(); // Cierra esta ventana de modificar
     }//GEN-LAST:event_jButton6ActionPerformed

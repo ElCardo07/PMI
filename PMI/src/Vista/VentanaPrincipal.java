@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import Controlador.EstudioControlador;
 import Controlador.PacienteControlador;
 import Controlador.ProfesionalControlador;
 
-/**
- *
- * @author jerem
- */
 public class VentanaPrincipal extends javax.swing.JFrame {
     private PacienteControlador pControl;
     private ProfesionalControlador profControl;
@@ -22,7 +15,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.pControl = pControl;
         this.profControl = profControl;
         this.eControl = eControl;
-        this.setLocationRelativeTo(null); // esta línea centra la ventana
+        this.setLocationRelativeTo(null); // esta linea centra la ventana
 }
     public VentanaPrincipal() {
         initComponents();
@@ -137,7 +130,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //Boton de Modificar datos
+        //Boton de modificar datos
         VentanaModificar ventanaMod = new VentanaModificar(pControl, profControl, eControl, this);
         ventanaMod.setVisible(true);
         this.setVisible(false);
@@ -151,7 +144,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Boton de eliminar datos
-        // Creamos la ventana de eliminar pasándole los controladores y esta ventana principal (this)
+        // Crea la ventana de eliminar pasandole los controladores y esta ventana principal (this)
         VentanaEliminar ventanaEliminar = new VentanaEliminar(pControl, profControl, eControl, this);
         ventanaEliminar.setVisible(true); // Mostramos la nueva ventana
         this.setVisible(false); // Ocultamos el menú principal

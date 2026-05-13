@@ -1,18 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 import Controlador.EstudioControlador;
 import Controlador.PacienteControlador;
 import Controlador.ProfesionalControlador;
 import javax.swing.JOptionPane;
-
-
-
-
-
-
 
 public class VentanaBuscar extends javax.swing.JFrame {
 
@@ -469,19 +459,19 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // BOTON VOLVER PACIENTE
+        // Boton volver paciente
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // BOTON LIMPIAR PROFESIONAL
+        // Boton limpiar profesional
         jTextField2.setText("");
         jTextArea2.setText("");
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // --- ATENCIÓN ACÁ: Verificá que este sea el nombre correcto de tu ComboBox de estado ---
+        //Boton busca por estado
         String estadoBuscado = jComboBox1.getSelectedItem().toString().trim(); 
     
     jTextArea3.setText("ESTUDIOS EN ESTADO: " + estadoBuscado + "\n\n");
@@ -505,14 +495,13 @@ public class VentanaBuscar extends javax.swing.JFrame {
             jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
             jTextArea3.append("Estado: " + estadoDelEstudio.trim() + "\n");
 
-            // --- MOSTRAR LOS ANÁLISIS ---
+            // Muestra analisis
             jTextArea3.append("Análisis realizados:\n");
             for (Integer cod : e.getAnalisis()) {
-                // Buscamos el nombre del análisis usando el catálogo en eControl
+                // Busca el nombre del analisis usando el catalogo en eControl
                 String nombreAnalisis = eControl.obtenerNombre(cod);
                 jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
             }
-            // ----------------------------
 
             jTextArea3.append("-------------------------\n");
             hay = true;
@@ -523,7 +512,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // BOTON BUSCAR POR DNI PACIENTE
+        // Boton buscar por dni paciente
         String dni = jTextField1.getText().trim();
         if (dni.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
@@ -541,7 +530,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //BOTON LISTAR TODOS PACIENTE
+        //Boton listar todos los pacientes
         jTextArea1.setText(""); // Limpiamos
         if (pControl.getListaPaciente().isEmpty()) {
             jTextArea1.setText("No hay pacientes registrados en el sistema.");
@@ -553,7 +542,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // BOTON CON OBRA SOCIAL PACIENTE
+        // Boton que muestra los pacientes con obra social 
         jTextArea1.setText("PACIENTES CON OBRA SOCIAL:\n\n");
         boolean hay = false;
         for (Modelo.Paciente p : pControl.getListaPaciente()) {
@@ -566,7 +555,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // BOTON SIN OBRA SOCIAL PACIENTE
+        // Boton que muestra los pacientes sin obra social
         jTextArea1.setText("PACIENTES SIN OBRA SOCIAL:\n\n");
         boolean hay = false;
         for (Modelo.Paciente p : pControl.getListaPaciente()) {
@@ -579,13 +568,13 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // BOTON LIMPIAR PACIENTE
+        // Boton limpiar paciente
         jTextField1.setText("");
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // BOTON LISTAR TODOS PROFESIONAL
+        // Boton listar todos los profesionales
         jTextArea2.setText("");
         if (profControl.getListaProfesionales().isEmpty()) {
             jTextArea2.setText("No hay profesionales registrados.");
@@ -598,7 +587,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // BUSCAR POR MATRICULA PROFESIONAL
+        // Buscar por matricula profesional
             String matStr = jTextField2.getText().trim();
         if (!matStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
@@ -616,7 +605,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // BOTON BUSCAR POR DNI ESTUDIO
+        // Boton buscar por dni estudio
     String dni = jTextField7.getText().trim();
     if (dni.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
@@ -626,14 +615,14 @@ public class VentanaBuscar extends javax.swing.JFrame {
     jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
     boolean hay = false;
     
-    // Buscamos al paciente completo en el controlador principal
+    // Busca al paciente completo en el controlador principal
     Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
     String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
     
     for (Modelo.Estudio e : eControl.getListaEstudios()) {
         if (e.getPaciente().getDni().equals(dni)) {
             
-            // Buscamos al profesional completo usando su matrícula
+            // Busca al profesional completo usando su matricula
             Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
             String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
 
@@ -642,14 +631,14 @@ public class VentanaBuscar extends javax.swing.JFrame {
             jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
             jTextArea3.append("Estado: " + e.getEstado() + "\n");
 
-            // --- SECCIÓN DE ANÁLISIS AGREGADA ---
+             
             jTextArea3.append("Análisis realizados:\n");
             for (Integer cod : e.getAnalisis()) {
-                // Buscamos el nombre del análisis en el catálogo del controlador
+                // Buscamos el nombre del analisis en el catálogo del controlador
                 String nombreAnalisis = eControl.obtenerNombre(cod);
                 jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
             }
-            // ------------------------------------
+            
 
             jTextArea3.append("-------------------------\n");
             hay = true;
@@ -662,7 +651,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // BOTON BUSCAR POR MATRICULA ESTUDIO
+        // Boton buscar por matricula estudio
         String matStr = jTextField6.getText().trim();
         if (!matStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
@@ -687,14 +676,14 @@ public class VentanaBuscar extends javax.swing.JFrame {
             jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
             jTextArea3.append("Estado: " + e.getEstado() + "\n");
 
-            // --- SECCIÓN DE ANÁLISIS ---
+            
             jTextArea3.append("Análisis realizados:\n");
             for (Integer cod : e.getAnalisis()) {
-                // Buscamos el nombre del análisis en el catálogo
+                // Buscamos el nombre del analisis en el catálogo
                 String nombreAnalisis = eControl.obtenerNombre(cod);
                 jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
             }
-            // ----------------------------
+            
 
             jTextArea3.append("-------------------------\n");
             hay = true;
@@ -704,7 +693,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-       // BOTON BUSCAR POR FECHA ESTUDIO
+       // Boton buscar por fecha estudio
     try {
         int dia = Integer.parseInt(jTextField3.getText().trim());
         int mes = Integer.parseInt(jTextField4.getText().trim());
@@ -727,14 +716,14 @@ public class VentanaBuscar extends javax.swing.JFrame {
                 jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
                 jTextArea3.append("Estado: " + e.getEstado().trim() + "\n");
 
-                // --- SECCIÓN DE ANÁLISIS ---
+                
                 jTextArea3.append("Análisis realizados:\n");
                 for (Integer cod : e.getAnalisis()) {
-                    // Buscamos el nombre del análisis en el catálogo del controlador
+                    // Buscamos el nombre del analisis en el catálogo del controlador
                     String nombreAnalisis = eControl.obtenerNombre(cod);
                     jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
                 }
-                // ----------------------------
+                
 
                 jTextArea3.append("-------------------------\n");
                 hay = true;
@@ -748,7 +737,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // BOTON LIMPIAR ESTUDIO
+        // Boton limpiar estudio
         jTextField7.setText("");
         jTextField6.setText("");
         jTextField3.setText("");
@@ -759,13 +748,13 @@ public class VentanaBuscar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // BOTON VOLVER ESTUDIO
+        // Boton volver estudio
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        //BOTON VOLVER PROFESIONAL
+        //Boton volver profesional
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed

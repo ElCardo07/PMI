@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Estudio{
-    // relación con las clases que ya tenés
-    private Paciente paciente;          // preguntar si esta es la forma de relacionarlos 
-    private Profesional profesional;    //preguntar si esta es la forma de relacionarlos 
+    
+    private Paciente paciente;           
+    private Profesional profesional;     
     
     private Fecha realizacion;
     private Fecha entrega;
@@ -84,12 +80,12 @@ public class Estudio{
         this.analisis = analisis;
     }
     
-    // Método para agregar un solo análisis sin tener que setear toda la lista de nuevo
+    // Metodo para agregar un solo analisis sin tener que setear toda la lista de nuevo
     public void agregarAnalisisCodigo(int codigo) {
         this.analisis.add(codigo);
 }
 
-    // Método para saber cuántos análisis tiene este estudio (Ejercicio 6d del práctico)
+    // Metodo para saber cuantos analisis tiene este estudio
     public int cantidadAnalisis() {
         return this.analisis.size();
 }

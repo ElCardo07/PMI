@@ -609,7 +609,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // BOTON BUSCAR PACIENTE
+        // Boton buscar paciente
         String dni = jTextField1.getText().trim();
         
         if (dni.isEmpty()) {
@@ -620,16 +620,16 @@ public class VentanaModificar extends javax.swing.JFrame {
         pacienteActual = pControl.buscarPacientePorDni(dni);
         
         if (pacienteActual != null) {
-            // Rellenamos los campos grises (No editables)
+            // Rellena los campos grises (No editables)
             jTextField3.setText(pacienteActual.getNombre());
             jTextField5.setText(pacienteActual.getApellido());
             
-            // Rellenamos los campos blancos (Editables)
+            // Rellena los campos blancos (Editables)
             jTextField7.setText(pacienteActual.getTelefono());
             jTextField9.setText(pacienteActual.getMail());
             jCheckBox1.setSelected(pacienteActual.isObraSocial());
         } else {
-            // Limpiamos si no encuentra
+            // Limpia si no encuentra
             jTextField3.setText("");
             jTextField5.setText("");
             jTextField7.setText("");
@@ -640,7 +640,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //BOTON DE GUARDAR CAMBIOS
+        //Boton de guardar cambios
         
         if (pacienteActual == null) {
             JOptionPane.showMessageDialog(this, "Primero debe buscar un paciente válido.");
@@ -660,18 +660,18 @@ public class VentanaModificar extends javax.swing.JFrame {
             return;
         }
 
-        // Modificamos en RAM
+        // Modifica en RAM
         pacienteActual.setTelefono(nuevoTel);
         pacienteActual.setMail(nuevoMail);
         pacienteActual.setObraSocial(nuevaOS);
 
-        // Modificamos en Disco (.txt)
+        // Modifica en Disco (.txt)
         ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
         archivoCtrl.guardarPacientes(pControl.getListaPaciente());
 
         JOptionPane.showMessageDialog(this, "Datos del paciente actualizados con éxito.");
         
-        // Limpiamos todo
+        // Limpia todo
         pacienteActual = null;
         jTextField1.setText("");
         jTextField3.setText("");
@@ -682,10 +682,10 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //BOTON BUSCAR PROFESIONAL
+        //Boton buscar profesional
         String matStr = jTextField13.getText().trim(); 
 
-        // Validamos que haya puesto números
+        // Valida que haya puesto números
         if (matStr.isEmpty() || !matStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica válida para buscar.");
             return;
@@ -693,11 +693,11 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         int matricula = Integer.parseInt(matStr);
         
-        // Lo buscamos en el controlador
+        // Lo busca en el controlador
         profesionalActual = profControl.buscarProfesional(matricula); 
 
         if (profesionalActual != null) {
-            // Rellenamos los campos de la pantalla con los datos viejos para que los vea
+            // Rellena los campos de la pantalla con los datos viejos para que los vea
             jTextField14.setText(profesionalActual.getNombre());
             jTextField15.setText(profesionalActual.getApellido());
             jTextField16.setText(profesionalActual.getTelefono());
@@ -706,12 +706,12 @@ public class VentanaModificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Profesional encontrado. Ya puede editar su Teléfono y Mail.");
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró ningún profesional con esa matrícula.");
-            profesionalActual = null; // Limpiamos por las dudas
+            profesionalActual = null; // Limpia por las dudas
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //BOTON GUARDAR CAMBIOS
+        //Boton guardar cambios
         
         if (profesionalActual == null) {
             JOptionPane.showMessageDialog(this, "Primero busque un profesional válido.");
@@ -740,7 +740,7 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Datos del profesional actualizados con éxito.");
         
-        // Limpiar
+        // Limpia
         profesionalActual = null;
         jTextField13.setText("");
         jTextField14.setText("");
@@ -750,19 +750,19 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        //BOTON VOLVER PACIENTE
+        //Boton volver paciente
         ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
         this.dispose(); // Cierra esta ventana de modificar
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //BOTON VOLVER PROFESIONAL
+        //Boton volver profesional
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // BOTON BUSCAR ESTUDIO
+        // Boton buscar estudio
         String dni = jTextField11.getText().trim();
         String diaStr = jTextField12.getText().trim();
         String mesStr = jTextField18.getText().trim();
@@ -778,7 +778,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             int mes = Integer.parseInt(mesStr);
             int anio = Integer.parseInt(anioStr);
 
-            // Buscamos el estudio que coincida en DNI y Fecha exacta
+            // Busca el estudio que coincida en dni y fecha exacta
             estudioActual = null;
             for (Modelo.Estudio e : eControl.getListaEstudios()) {
                 if (e.getPaciente().getDni().equals(dni) && 
@@ -792,21 +792,21 @@ public class VentanaModificar extends javax.swing.JFrame {
             }
 
             if (estudioActual != null) {
-                // Buscamos los datos completos en los controladores (como hicimos en la ventana Buscar)
+                // Busca los datos completos en los controladores (como hicimos en la ventana Buscar)
                 Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(estudioActual.getPaciente().getDni());
                 Modelo.Profesional profCompleto = profControl.buscarProfesional(estudioActual.getProfesional().getMatricula());
 
-                // --- ATENCIÓN: CAMBIÁ ESTOS NOMBRES POR TUS JTEXTFIELD REALES ---
-                // Rellenamos el Paciente
+                
+                // Rellena el Paciente
                 jTextField25.setText(pacCompleto != null ? pacCompleto.getNombre() : "");
                 jTextField26.setText(pacCompleto != null ? pacCompleto.getApellido() : "");
                 
-                // Rellenamos el Profesional
+                // Rellenam el profesional
                 jTextField19.setText(profCompleto != null ? profCompleto.getNombre() + " " + profCompleto.getApellido() : "");
                 jTextField20.setText("Matrícula: " + estudioActual.getProfesional().getMatricula());
                 // ----------------------------------------------------------------
 
-                // Rellenamos la fecha de entrega si es que ya tiene una cargada
+                // Rellena la fecha de entrega si es que ya tiene una cargada
                 if (estudioActual.getEntrega() != null) {
                     jTextField22.setText("" + estudioActual.getEntrega().getDia());
                     jTextField23.setText("" + estudioActual.getEntrega().getMes());
@@ -817,7 +817,7 @@ public class VentanaModificar extends javax.swing.JFrame {
                     jTextField24.setText("");
                 }
                 
-                // Actualizamos el ComboBox con el estado actual
+                // Actualiza el ComboBox con el estado actual
                 jComboBox1.setSelectedItem(estudioActual.getEstado());
 
             } else {
@@ -830,7 +830,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // BOTON GUARDAR CAMBIOS ESTUDIO
+        // Boton guardar cambios estudio
         if (estudioActual == null) {
             JOptionPane.showMessageDialog(this, "Primero debe buscar un estudio válido.");
             return;
@@ -842,71 +842,72 @@ public class VentanaModificar extends javax.swing.JFrame {
         String estadoSeleccionado = jComboBox1.getSelectedItem().toString();
 
         try {
-            // Si el usuario ingresó una fecha de entrega, validamos y creamos el objeto
+            // Si el usuario ingreso una fecha de entrega, valida y crea el objeto
             if (!diaStr.isEmpty() && !mesStr.isEmpty() && !anioStr.isEmpty()) {
                 int dia = Integer.parseInt(diaStr);
                 int mes = Integer.parseInt(mesStr);
                 int anio = Integer.parseInt(anioStr);
                 
-                // --- NUEVAS VALIDACIONES LÓGICAS DE FECHA ---
-                // Le preguntamos a la PC el año actual
+                
+                // Le pregunta a la PC el año actual
                 java.time.LocalDate hoy = java.time.LocalDate.now();
                 int anioActual = hoy.getYear();
 
-                // 1. Rango de año dinámico (No menor al año actual de la PC, ni mayor a 10 años en el futuro)
+                // 1. Rango de año dinamico (No menor al año actual de la PC, ni mayor a 10 años en el futuro)
                 if (anio < anioActual || anio > anioActual + 1000000) {
                     JOptionPane.showMessageDialog(this, "El año ingresado no es válido (debe ser mayor a: " + anioActual + ").");
                     return;
                 }
-                // --- NUEVAS VALIDACIONES LÓGICAS DE FECHA ---
+                
+                // Validacionde fechas
                 if (mes < 1 || mes > 12) {
                     JOptionPane.showMessageDialog(this, "El mes ingresado no es válido (debe ser entre 1 y 12).");
-                    return; // Corta la ejecución para que no guarde
+                    return; // Corta la ejecucion para que no guarde
                 }
                 if (dia < 1 || dia > 31) {
                     JOptionPane.showMessageDialog(this, "El día ingresado no es válido (debe ser entre 1 y 31).");
                     return;
                 }
                 
-                // Filtro "Pro": Meses con 30 días
+                // Filtro de meses con 30 dias
                 if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) {
                     JOptionPane.showMessageDialog(this, "Error: El mes " + mes + " solo tiene 30 días.");
                     return;
                 }
-                // Filtro "Pro": Febrero
+                // Filtro de febrero
                 if (mes == 2 && dia > 29) {
                     JOptionPane.showMessageDialog(this, "Error: Febrero no puede tener más de 29 días.");
                     return;
                 }
-                // --------------------------------------------
                 
-                // Si pasa todos los filtros de arriba, creamos el objeto Fecha con seguridad
+                
+                // Si pasa todos los filtros de arriba, crea el objeto Fecha con seguridad
                 Modelo.Fecha nuevaFechaEntrega = new Modelo.Fecha(dia, mes, anio);
                 estudioActual.setEntrega(nuevaFechaEntrega);
             }
 
-            // 1. Modificamos el estado en RAM
+            // Modifica el estado en RAM
             estudioActual.setEstado(estadoSeleccionado);
 
-            // 2. Modificamos en el Archivo (.txt)
+            // Modifica en el Archivo (.txt)
             ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
             archivoCtrl.guardarEstudios(eControl.getListaEstudios());
 
             JOptionPane.showMessageDialog(this, "Estudio actualizado con éxito.");
 
-            // 3. Limpiamos la pantalla
+            // Limpia la pantalla
             estudioActual = null;
             jTextField11.setText(""); 
             jTextField12.setText(""); 
             jTextField18.setText(""); 
             jTextField21.setText(""); 
             
-            // --- LIMPIAMOS TUS CUADRITOS NUEVOS ---
+            
             jTextField25.setText("");
             jTextField26.setText("");
             jTextField19.setText("");
             jTextField20.setText("");
-            // --------------------------------------
+            
 
             jTextField22.setText("");
             jTextField23.setText("");
@@ -919,7 +920,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // BOTON DE VOLVER ESTUDIO
+        // Boton de volver estudio
         ventanaPrincipal.setVisible(true); // Vuelve a mostrar el menú principal
         this.dispose(); // Cierra esta ventana de modificar
     }//GEN-LAST:event_jButton8ActionPerformed

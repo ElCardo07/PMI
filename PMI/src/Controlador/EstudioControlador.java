@@ -17,14 +17,14 @@ public class EstudioControlador {
 
     // Constructores 
 
-    public EstudioControlador() {//controlador vasio
+    public EstudioControlador() {
         this.estudio = new Estudio();
         this.listaEstudios = new ArrayList<>();
         this.catalogo = new HashMap<>();
         cargarCatalogo();
     }
 
-    public EstudioControlador(Estudio estudio) {//Constructor con estudiante
+    public EstudioControlador(Estudio estudio) {
         this.estudio = estudio;
         this.listaEstudios = new ArrayList<>();
         this.catalogo = new HashMap<>();
@@ -52,7 +52,7 @@ public class EstudioControlador {
     }
     
     
-    // Setters del estudio interno 
+    // Setters del estudio  
     public void setPaciente(Paciente paciente) {
         estudio.setPaciente(paciente);
     }
@@ -73,7 +73,7 @@ public class EstudioControlador {
     }
 
     
-    //  Geters del estudio interno 
+    //  Geters del estudio  
     public Paciente getPaciente() {
         return estudio.getPaciente();
     }
@@ -109,9 +109,7 @@ public class EstudioControlador {
 
     public void prepararNuevoEstudio() {
         this.estudio = new Estudio();
-    }
-    
-    // Catálogo 
+    } 
 
     public boolean existeCodigo(int codigo) {
         return catalogo.containsKey(codigo);
@@ -137,7 +135,9 @@ public class EstudioControlador {
     return cant;
 }
     
-    public List<Estudio> obtenerEstudiosPorEstado(String estado) {// Devuelve los estudios de un estado pasado por parametro
+    // Devuelve los estudios de un estado pasado por parametro
+    
+    public List<Estudio> obtenerEstudiosPorEstado(String estado) {
         List<Estudio> resultado = new ArrayList<>();
         for (Estudio e : listaEstudios) {
             if (e.getEstado().equalsIgnoreCase(estado)) {
@@ -147,7 +147,8 @@ public class EstudioControlador {
         return resultado;
     }
     
-    public List<Estudio> filtrarPorProfesional(int matricula) {// Filtar por profesional
+    // Filtar por profesional
+    public List<Estudio> filtrarPorProfesional(int matricula) {
     List<Estudio> filtrados = new ArrayList<>();
     for (Estudio e : listaEstudios) {
         // Comparamos la matrícula del profesional del estudio con la que buscamos
@@ -157,8 +158,9 @@ public class EstudioControlador {
     }
     return filtrados;
 }
-
-    public List<Estudio> filtrarEstudiosPorFecha(Fecha fechaBuscada) {// Filtrar estudios por fecha
+    
+    // Filtrar estudios por fecha
+    public List<Estudio> filtrarEstudiosPorFecha(Fecha fechaBuscada) {
     List<Estudio> filtrados = new ArrayList<>();
     
     for (Estudio e : listaEstudios) {

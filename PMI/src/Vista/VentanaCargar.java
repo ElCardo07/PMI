@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import Controlador.EstudioControlador;
@@ -31,19 +28,19 @@ public class VentanaCargar extends javax.swing.JFrame {
         this.ventanaPrincipal = ventanaPrincipal;
         this.setLocationRelativeTo(null);
         
-        // --- AUTOCOMPLETAR FECHA DE REALIZACIÓN CON EL DÍA DE HOY ---
+        //Autocompleta la fecha de realizacion con el dia de hoy
         java.time.LocalDate hoy = java.time.LocalDate.now();
         txtDiaRealizacion.setText(String.valueOf(hoy.getDayOfMonth()));
         txtMesRealizacion.setText(String.valueOf(hoy.getMonthValue()));
         txtAnioRealizacion.setText(String.valueOf(hoy.getYear()));
         
-        // --- LLENAR COMBOBOX DE ANÁLISIS ---
+        
         cmbAnalisisDisponibles.removeAllItems(); 
         
-        // Llamamos a getCatalogo() que trae tooooodos los análisis disponibles
+        
         for (java.util.Map.Entry<Integer, String> entry : eControl.getCatalogo().entrySet()) {
             
-            // Los unimos y los metemos al menú
+            
             cmbAnalisisDisponibles.addItem(entry.getKey() + " - " + entry.getValue());
         }
     }
@@ -498,31 +495,33 @@ public class VentanaCargar extends javax.swing.JFrame {
                                 .addGap(0, 324, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDiaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDiaRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMesRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMesEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel19)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAnioRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAnioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtDniEstudio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                .addComponent(txtMatriculaEstudio))))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDiaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtDiaRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel14)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtMesRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel17)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtMesEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel19)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtAnioRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtAnioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtDniEstudio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                        .addComponent(txtMatriculaEstudio)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
@@ -541,7 +540,7 @@ public class VentanaCargar extends javax.swing.JFrame {
                                         .addComponent(cmbAnalisisDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnAgregarAnalisis)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -556,13 +555,14 @@ public class VentanaCargar extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(txtMatriculaEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDiaRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtMesRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAnioRealizacion)
-                    .addComponent(jLabel15))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDiaRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
+                        .addComponent(txtMesRealizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -627,25 +627,25 @@ public class VentanaCargar extends javax.swing.JFrame {
         String mail = txtMailPaciente.getText().trim().toLowerCase(); // Lo pasamos a minúscula acá mismo
         boolean obraSocial = chkObraSocial.isSelected();
 
-        // 1. Validar campos vacios
+        // Valida campos vacios
         if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || mail.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
         
-        // 2. Validar nombre y apellido
+        // Valida nombre y apellido
         if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$") || !apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
             JOptionPane.showMessageDialog(null, "El nombre y el apellido solo pueden contener letras.");
             return;
         }
         
-        // 3. Validar DNI
+        // Valida DNI
         if (!pControl.dniValido(dni)){
             JOptionPane.showMessageDialog(null, "El DNI debe tener 7 u 8 dígitos numéricos.");
             return;
         }
 
-        // --- 4. NUEVA VALIDACIÓN DE MAIL (ESTRICTA) ---
+        // validacion de mail
         if (!mail.contains("@")) {
             JOptionPane.showMessageDialog(null, "Error: El correo debe contener un '@'.");
             return;
@@ -658,21 +658,21 @@ public class VentanaCargar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Solo se permiten correos de @gmail o @hotmail.");
             return;
         }
-        // ----------------------------------------------
         
-        // 5. Validar teléfono (Celular Argentino)
+        
+        // Valida telefono (Celular Argentino)
         if (!telefono.matches("^(?:\\+549|549)?0?\\d{10}$")) {
             JOptionPane.showMessageDialog(null, "Ingrese un celular válido de Argentina de 10 dígitos (Ej: 2664123456).");
             return;
         }
         
-        // 6. Validar que no se repita
+        // Valida que no se repita
         if (pControl.buscarPacientePorDni(dni) != null) {
             JOptionPane.showMessageDialog(null, "Ya existe un paciente con ese DNI.");
             return;
         }
 
-        // 7. Guardar
+        // Guarda
         pControl.setDniPaciente(dni);
         pControl.setNombrePaciente(nombre);
         pControl.setApellidoPaciente(apellido);
@@ -687,7 +687,7 @@ public class VentanaCargar extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");
 
-        // Limpiar campos
+        // Limpia campos
         txtDniPaciente.setText("");
         txtNombrePaciente.setText("");
         txtApellidoPaciente.setText("");
@@ -726,52 +726,52 @@ public class VentanaCargar extends javax.swing.JFrame {
     String mail = txtMailProfesional.getText().trim().toLowerCase();
     
 
-    // 1. Validar campos vacíos
+    // Valida campos vacios
     if (matricula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || mail.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
         return;
     }
-    // 2.5. Validar que nombre y apellido solo tengan letras
+    // Valida que nombre y apellido solo tengan letras
         if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$") || !apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
             JOptionPane.showMessageDialog(null, "El nombre y el apellido solo pueden contener letras.");
             return;
         }
-    // 2. Validar que matrícula sea numérica y tenga la longitud correcta (4 a 6 dígitos para MN/MP)
+    // Valida que matricula sea numerica y tenga la longitud correcta (4 a 6 digitos para MN/MP)
         if (!matricula.matches("\\d{4,6}")) {
             JOptionPane.showMessageDialog(null, "La matrícula debe contener entre 4 y 6 números (Formato Nacional/Provincial).");
             return;
         }
 
-        // 2.6. Validar formato de Mail
+        // Valida formato de Mail
         if (!mail.matches("^[a-z0-9._%+-]+@(gmail|hotmail)\\.com(\\.ar)?$")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese un correo electrónico válido (ejemplo@mail.com).");
             return;
         }
         
      
-    // 3. Validar teléfono (Celular Argentino)
+    // Valida teléfono (Celular Argentino)
         if (!telefono.matches("^(?:\\+549|549)?0?\\d{10}$")) {
             JOptionPane.showMessageDialog(null, "Ingrese un celular válido de Argentina de 10 dígitos (Ej: 2664123456).");
             return;
         }
-    // 4. Validar que no exista ya
+    // Valida que no exista ya
     int matriculaInt = Integer.parseInt(matricula);
     if (profControl.buscarProfesional(matriculaInt) != null) {
         JOptionPane.showMessageDialog(null, "Ya existe un profesional con esa matrícula.");
         return;
     }
 
-    // 5. Guardar
+    // Guarda
     profControl.registrarNuevoProfesional(matriculaInt, apellido, nombre, telefono, mail);
     
-    // --- NUEVO: PERSISTENCIA EN ARCHIVO ---
+    // Persistencia de archivo
         ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
         archivoCtrl.guardarProfesionales(profControl.getListaProfesionales());
         // --------------------------------------
 
     JOptionPane.showMessageDialog(null, "Profesional guardado correctamente.");
 
-    // 6. Limpiar campos
+    // Limpia campos
     txtMatriculaProfesional.setText("");
     txtNombreProfesional.setText("");
     txtApellidoProfesional.setText("");
@@ -784,10 +784,10 @@ public class VentanaCargar extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
     private void btnAgregarAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAnalisisActionPerformed
-        // Agarramos el texto completo que eligió el usuario (Ej: "105 - Análisis de Sangre")
+        // Agarra el texto completo que eligio el usuario 
         String seleccionado = cmbAnalisisDisponibles.getSelectedItem().toString();
         
-        // Usamos un truco para cortar el texto justo en el guión y quedarnos solo con el número
+        // Usa un truco para cortar el texto justo en el guion y quedarnos solo con el numero
         String codigoStr = seleccionado.split(" - ")[0]; 
         int codigo = Integer.parseInt(codigoStr);
         
@@ -797,22 +797,22 @@ public class VentanaCargar extends javax.swing.JFrame {
         }
         
         analisisTemporales.add(codigo);
-        // Usamos el texto seleccionado entero para mostrarlo en el cuadro de abajo
+        // Usa el texto seleccionado entero para mostrarlo en el cuadro de abajo
         txtAreaAnalisis.append(seleccionado + "\n");
     }//GEN-LAST:event_btnAgregarAnalisisActionPerformed
 
     private void btnEliminarAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAnalisisActionPerformed
-        // Boton ElIMINAR ESTUDIO
-        // 1. Verificamos que haya algo para borrar
+        // Boton eliminar estudio
+        // Verifica que haya algo para borrar
         if (analisisTemporales.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay ningún análisis agregado para eliminar.");
             return;
         }
 
-        // 2. Le preguntamos al usuario qué código quiere sacar
+        // Le pregunta al usuario qué codigo quiere sacar
         String codigoStr = JOptionPane.showInputDialog(this, "Ingrese el CÓDIGO del análisis que desea eliminar:");
 
-        // Si el usuario presiona "Cancelar" o cierra la ventanita, cortamos acá
+        // Si el usuario presiona "Cancelar" o cierra la ventanita, cortamos aca
         if (codigoStr == null || codigoStr.trim().isEmpty()) {
             return; 
         }
@@ -820,13 +820,13 @@ public class VentanaCargar extends javax.swing.JFrame {
         try {
             int codigoAEliminar = Integer.parseInt(codigoStr.trim());
 
-            // 3. Verificamos si ese código realmente estaba en nuestra lista
+            // Verifica si ese codigo realmente estaba en la lista
             if (analisisTemporales.contains(codigoAEliminar)) {
                 
-                // 4. Lo borramos de la memoria temporal (Usando el truco de Integer.valueOf)
+                // Borra de la memoria temporal (Usando el truco de Integer.valueOf)
                 analisisTemporales.remove(Integer.valueOf(codigoAEliminar));
 
-                // 5. Limpiamos el cuadro de texto y lo volvemos a escribir sin el análisis borrado
+                // Limpia el cuadro de texto y lo volvemos a escribir sin el analisis borrado
                 txtAreaAnalisis.setText("");
                 for (int cod : analisisTemporales) {
                     String nombre = eControl.obtenerNombre(cod);
@@ -856,19 +856,19 @@ public class VentanaCargar extends javax.swing.JFrame {
         String anioE = txtAnioEntrega.getText().trim();
         String estado = cmbEstado.getSelectedItem().toString();
 
-        // 1. Validar campos vacíos
+        // Valida campos vacios
         if (dniPaciente.isEmpty() || matriculaStr.isEmpty() || diaR.isEmpty() || mesR.isEmpty() || anioR.isEmpty() || diaE.isEmpty() || mesE.isEmpty() || anioE.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
 
-        // 2. Validar que exista el paciente
+        // Valida que exista el paciente
         if (pControl.buscarPacientePorDni(dniPaciente) == null) {
             JOptionPane.showMessageDialog(null, "No existe un paciente con ese DNI.");
             return;
         }
 
-        // 3. Validar que exista el profesional
+        // Valida que exista el profesional
         if (!matriculaStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "La matrícula debe ser numérica.");
             return;
@@ -879,13 +879,13 @@ public class VentanaCargar extends javax.swing.JFrame {
             return;
         }
 
-        // 4. Validar que haya al menos un análisis
+        // Valida que haya al menos un analisis
         if (analisisTemporales.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe agregar al menos un análisis.");
             return;
         }
 
-        // 5. VALIDACIÓN DE FECHAS (Lógica de seguridad)
+        // Validacion de fechas
         try {
             int dR = Integer.parseInt(diaR);
             int mR = Integer.parseInt(mesR);
@@ -898,7 +898,7 @@ public class VentanaCargar extends javax.swing.JFrame {
             java.time.LocalDate hoy = java.time.LocalDate.now();
             int anioActual = hoy.getYear();
 
-            // --- FILTRO 1: Rangos básicos (Días 1-31, Meses 1-12, Años lógicos) ---
+            // Rangos basicos (Días 1-31, Meses 1-12, Años lógicos) ---
             if (mR < 1 || mR > 12 || mE < 1 || mE > 12) {
                 JOptionPane.showMessageDialog(null, "Error: El mes debe estar entre 1 y 12.");
                 return;
@@ -907,13 +907,13 @@ public class VentanaCargar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error: El día debe estar entre 1 y 31.");
                 return;
             }
-            // Evitamos años del pasado o demasiado lejanos en el futuro
+            // Evita años del pasado o demasiado lejanos en el futuro
             if (aR < anioActual - 1 || aE > anioActual + 5) {
                 JOptionPane.showMessageDialog(null, "Error: El año ingresado no es válido.");
                 return;
             }
 
-            // --- FILTRO 2: Días por mes (Abril, Junio, etc.) ---
+            // Dias por mes (Abril, Junio, etc.) 
             if (((mR == 4 || mR == 6 || mR == 9 || mR == 11) && dR > 30) || 
                 ((mE == 4 || mE == 6 || mE == 9 || mE == 11) && dE > 30)) {
                 JOptionPane.showMessageDialog(null, "Error: Uno de los meses ingresados solo tiene 30 días.");
@@ -924,7 +924,7 @@ public class VentanaCargar extends javax.swing.JFrame {
                 return;
             }
 
-            // --- FILTRO 3: Consistencia temporal (Entrega >= Realización) ---
+            // Consistencia temporal (Entrega >= Realizacion) 
             boolean fechaInvalida = false;
             if (aE < aR) {
                 fechaInvalida = true;
@@ -939,7 +939,7 @@ public class VentanaCargar extends javax.swing.JFrame {
                 return;
             }
 
-            // 6. GUARDAR (Si pasó todos los filtros)
+            // Guarda (Si pasó todos los filtros)
             eControl.setPaciente(pControl.buscarPacientePorDni(dniPaciente));
             eControl.setProfesional(profControl.buscarProfesional(matricula));
             eControl.setFechaRealizacion(new Fecha(dR, mR, aR));
@@ -958,11 +958,11 @@ public class VentanaCargar extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Estudio guardado correctamente.");
 
-            // 7. LIMPIAR TODO
+            // Limpia todo
             txtDniEstudio.setText("");
             txtMatriculaEstudio.setText("");
             
-            // Reiniciamos a la fecha de la PC
+            // Ingresa la fecha de la PC
             txtDiaRealizacion.setText("" + hoy.getDayOfMonth());
             txtMesRealizacion.setText("" + hoy.getMonthValue());
             txtAnioRealizacion.setText("" + hoy.getYear());
@@ -989,7 +989,7 @@ public class VentanaCargar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnioEntregaActionPerformed
 
     private void cmbAnalisisDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAnalisisDisponiblesActionPerformed
-      // Dejalo vacío, no necesitamos hacer nada cuando el usuario hace clic acá.}
+     
     }//GEN-LAST:event_cmbAnalisisDisponiblesActionPerformed
 
     /**
