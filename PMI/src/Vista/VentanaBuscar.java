@@ -605,7 +605,6 @@ public class VentanaBuscar extends javax.swing.JFrame {
             jTextArea2.setText("No hay profesionales registrados.");
             return;
         }
-        // Usamos .values() porque es un HashMap
         for (Modelo.Profesional prof : profControl.getListaProfesionales()) {
             jTextArea2.append(prof.toString() + "\n-------------------------\n");
         }
@@ -613,14 +612,17 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // Buscar por matricula profesional
-            String matStr = jTextField2.getText().trim();
+        String matStr = jTextField2.getText().trim();
         if (!matStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
             return;
         }
         
         jTextArea2.setText("");
-        Modelo.Profesional prof = profControl.buscarProfesional(Integer.parseInt(matStr));
+        
+        //Convertimos y buscamos
+        int matricula = convertirAEntero(matStr);
+        Modelo.Profesional prof = profControl.buscarProfesional(matricula);
         
         if (prof != null) {
             jTextArea2.setText(prof.toString());
@@ -631,25 +633,25 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // Boton buscar por dni estudio
-    String dni = jTextField7.getText().trim();
-    if (dni.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
-        return;
-    }
+        String dni = jTextField7.getText().trim();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI.");
+            return;
+        }
 
-    jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
-    boolean hay = false;
+        jTextArea3.setText("ESTUDIOS DEL PACIENTE DNI: " + dni + "\n\n");
+        boolean hay = false;
     
-    // Busca al paciente completo en el controlador principal
-    Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
-    String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
+        // Busca al paciente completo en el controlador principal
+        Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(dni);
+        String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : "Desconocido";
     
-    for (Modelo.Estudio e : eControl.getListaEstudios()) {
-        if (e.getPaciente().getDni().equals(dni)) {
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getPaciente().getDni().equals(dni)) {
             
-            // Busca al profesional completo usando su matricula
-            Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
-            String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+                // Busca al profesional completo usando su matricula
+                Modelo.Profesional profCompleto = profControl.buscarProfesional(e.getProfesional().getMatricula());
+                String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
 
             jTextArea3.append("Paciente: " + nombrePac + "\n");
             jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
@@ -682,47 +684,59 @@ public class VentanaBuscar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese una matrícula numérica.");
             return;
         }
-    
-    int mat = Integer.parseInt(matStr);
-    jTextArea3.setText("ESTUDIOS A CARGO DEL PROFESIONAL MATRÍCULA: " + mat + "\n\n");
-    boolean hay = false;
-    
-    Modelo.Profesional profCompleto = profControl.buscarProfesional(mat);
-    String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
+        
+        //convertimos
+        int mat = convertirAEntero(matStr);
+        
+        jTextArea3.setText("ESTUDIOS A CARGO DEL PROFESIONAL MATRÍCULA: " + mat + "\n\n");
+        boolean hay = false;
+        
+        Modelo.Profesional profCompleto = profControl.buscarProfesional(mat);
+        String nombreProf = (profCompleto != null) ? (profCompleto.getNombre() + " " + profCompleto.getApellido()) : "Desconocido";
 
-    for (Modelo.Estudio e : eControl.getListaEstudios()) {
-        if (e.getProfesional().getMatricula() == mat) {
-            
-            Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
-            String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getProfesional().getMatricula() == mat) {
+                
+                Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(e.getPaciente().getDni());
+                String nombrePac = (pacCompleto != null) ? (pacCompleto.getNombre() + " " + pacCompleto.getApellido()) : e.getPaciente().getDni();
 
-            jTextArea3.append("Profesional a cargo: " + nombreProf + "\n");
-            jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
-            jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
-            jTextArea3.append("Estado: " + e.getEstado() + "\n");
+                jTextArea3.append("Profesional a cargo: " + nombreProf + "\n");
+                jTextArea3.append("Paciente: " + nombrePac + " (DNI: " + e.getPaciente().getDni() + ")\n");
+                jTextArea3.append("Fecha Realización: " + e.getRealizacion().getDia() + "/" + e.getRealizacion().getMes() + "/" + e.getRealizacion().getAnio() + "\n");
+                jTextArea3.append("Estado: " + e.getEstado() + "\n");
 
-            
-            jTextArea3.append("Análisis realizados:\n");
-            for (Integer cod : e.getAnalisis()) {
-                // Buscamos el nombre del analisis en el catálogo
-                String nombreAnalisis = eControl.obtenerNombre(cod);
-                jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
+                jTextArea3.append("Análisis realizados:\n");
+                for (Integer cod : e.getAnalisis()) {
+                    // Buscamos el nombre del analisis en el catálogo
+                    String nombreAnalisis = eControl.obtenerNombre(cod);
+                    jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
+                }
+
+                jTextArea3.append("-------------------------\n");
+                hay = true;
             }
-            
-
-            jTextArea3.append("-------------------------\n");
-            hay = true;
         }
-    }
-    if (!hay) jTextArea3.append("No se encontraron estudios para esta matrícula.");
+        if (!hay) jTextArea3.append("No se encontraron estudios para esta matrícula.");
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
        // Boton buscar por fecha estudio
-    try {
-        int dia = Integer.parseInt(jTextField3.getText().trim());
-        int mes = Integer.parseInt(jTextField4.getText().trim());
-        int anio = Integer.parseInt(jTextField5.getText().trim());
+       // Boton buscar por fecha estudio
+        String diaStr = jTextField3.getText().trim();
+        String mesStr = jTextField4.getText().trim();
+        String anioStr = jTextField5.getText().trim();
+
+       
+        // Verificamos que los tres campos contengan pura y exclusivamente números
+        if (!diaStr.matches("\\d+") || !mesStr.matches("\\d+") || !anioStr.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Ingrese números válidos para la fecha.");
+            return; // Cortamos la ejecución acá si pusieron letras o lo dejaron vacío
+        }
+
+        
+        int dia = Integer.parseInt(diaStr);
+        int mes = Integer.parseInt(mesStr);
+        int anio = Integer.parseInt(anioStr);
         
         jTextArea3.setText("ESTUDIOS REALIZADOS EL " + dia + "/" + mes + "/" + anio + "\n\n");
         boolean hay = false;
@@ -741,7 +755,6 @@ public class VentanaBuscar extends javax.swing.JFrame {
                 jTextArea3.append("Profesional a cargo: " + nombreProf + " (Matrícula: " + e.getProfesional().getMatricula() + ")\n");
                 jTextArea3.append("Estado: " + e.getEstado().trim() + "\n");
 
-                
                 jTextArea3.append("Análisis realizados:\n");
                 for (Integer cod : e.getAnalisis()) {
                     // Buscamos el nombre del analisis en el catálogo del controlador
@@ -749,16 +762,11 @@ public class VentanaBuscar extends javax.swing.JFrame {
                     jTextArea3.append(" - " + cod + ": " + nombreAnalisis + "\n");
                 }
                 
-
                 jTextArea3.append("-------------------------\n");
                 hay = true;
             }
         }
         if (!hay) jTextArea3.append("No se encontraron estudios en esa fecha.");
-        
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Ingrese números válidos para la fecha.");
-    }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -784,6 +792,16 @@ public class VentanaBuscar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    
+     private int convertirAEntero(String texto) {
+        int numero = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char digito = texto.charAt(i);
+            numero = (numero * 10) + (digito - '0');
+        }
+        return numero;
+    }
+    
     /**
      * @param args the command line arguments
      */

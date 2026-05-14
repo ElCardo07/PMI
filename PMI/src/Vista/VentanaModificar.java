@@ -703,9 +703,8 @@ public class VentanaModificar extends javax.swing.JFrame {
             return;
         }
 
-        int matricula = Integer.parseInt(matStr);
-        
-        // Lo busca en el controlador
+        //convertimos y buscamos
+        int matricula = convertirAEntero(matStr);
         profesionalActual = profControl.buscarProfesional(matricula); 
 
         if (profesionalActual != null) {
@@ -784,60 +783,59 @@ public class VentanaModificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete el DNI y la fecha de realización para buscar.");
             return;
         }
-
-        try {
-            int dia = Integer.parseInt(diaStr);
-            int mes = Integer.parseInt(mesStr);
-            int anio = Integer.parseInt(anioStr);
-
-            // Busca el estudio que coincida en dni y fecha exacta
-            estudioActual = null;
-            for (Modelo.Estudio e : eControl.getListaEstudios()) {
-                if (e.getPaciente().getDni().equals(dni) && 
-                    e.getRealizacion().getDia() == dia && 
-                    e.getRealizacion().getMes() == mes && 
-                    e.getRealizacion().getAnio() == anio) {
-                    
-                    estudioActual = e;
-                    break;
-                }
-            }
-
-            if (estudioActual != null) {
-                // Busca los datos completos en los controladores (como hicimos en la ventana Buscar)
-                Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(estudioActual.getPaciente().getDni());
-                Modelo.Profesional profCompleto = profControl.buscarProfesional(estudioActual.getProfesional().getMatricula());
-
-                
-                // Rellena el Paciente
-                jTextField25.setText(pacCompleto != null ? pacCompleto.getNombre() : "");
-                jTextField26.setText(pacCompleto != null ? pacCompleto.getApellido() : "");
-                
-                // Rellenam el profesional
-                jTextField19.setText(profCompleto != null ? profCompleto.getNombre() + " " + profCompleto.getApellido() : "");
-                jTextField20.setText("Matrícula: " + estudioActual.getProfesional().getMatricula());
-                // ----------------------------------------------------------------
-
-                // Rellena la fecha de entrega si es que ya tiene una cargada
-                if (estudioActual.getEntrega() != null) {
-                    jTextField22.setText("" + estudioActual.getEntrega().getDia());
-                    jTextField23.setText("" + estudioActual.getEntrega().getMes());
-                    jTextField24.setText("" + estudioActual.getEntrega().getAnio());
-                } else {
-                    jTextField22.setText("");
-                    jTextField23.setText("");
-                    jTextField24.setText("");
-                }
-                
-                // Actualiza el ComboBox con el estado actual
-                jComboBox1.setSelectedItem(estudioActual.getEstado());
-
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontró ningún estudio para ese DNI en la fecha indicada.");
-            }
-
-        } catch (NumberFormatException ex) {
+        // Verificamos que los campos de fecha tengan solo números antes de intentar convertirlos
+        if (!diaStr.matches("\\d+") || !mesStr.matches("\\d+") || !anioStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "La fecha debe contener solo números.");
+            return;
+        }
+
+        
+        int dia = Integer.parseInt(diaStr);
+        int mes = Integer.parseInt(mesStr);
+        int anio = Integer.parseInt(anioStr);
+
+        // Busca el estudio que coincida en dni y fecha exacta
+        estudioActual = null;
+        for (Modelo.Estudio e : eControl.getListaEstudios()) {
+            if (e.getPaciente().getDni().equals(dni) && 
+                e.getRealizacion().getDia() == dia && 
+                e.getRealizacion().getMes() == mes && 
+                e.getRealizacion().getAnio() == anio) {
+                
+                estudioActual = e;
+                break;
+            }
+        }
+
+        if (estudioActual != null) {
+            // Busca los datos completos en los controladores
+            Modelo.Paciente pacCompleto = pControl.buscarPacientePorDni(estudioActual.getPaciente().getDni());
+            Modelo.Profesional profCompleto = profControl.buscarProfesional(estudioActual.getProfesional().getMatricula());
+
+            // Rellena el Paciente
+            jTextField25.setText(pacCompleto != null ? pacCompleto.getNombre() : "");
+            jTextField26.setText(pacCompleto != null ? pacCompleto.getApellido() : "");
+            
+            // Rellena el profesional
+            jTextField19.setText(profCompleto != null ? profCompleto.getNombre() + " " + profCompleto.getApellido() : "");
+            jTextField20.setText("Matrícula: " + estudioActual.getProfesional().getMatricula());
+
+            // Rellena la fecha de entrega si es que ya tiene una cargada
+            if (estudioActual.getEntrega() != null) {
+                jTextField22.setText("" + estudioActual.getEntrega().getDia());
+                jTextField23.setText("" + estudioActual.getEntrega().getMes());
+                jTextField24.setText("" + estudioActual.getEntrega().getAnio());
+            } else {
+                jTextField22.setText("");
+                jTextField23.setText("");
+                jTextField24.setText("");
+            }
+            
+            // Actualiza el ComboBox con el estado actual del estudio
+            jComboBox1.setSelectedItem(estudioActual.getEstado());
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún estudio para ese DNI en la fecha indicada.");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -853,82 +851,99 @@ public class VentanaModificar extends javax.swing.JFrame {
         String anioStr = jTextField24.getText().trim();
         String estadoSeleccionado = jComboBox1.getSelectedItem().toString();
 
-        try {
-            // Si el usuario ingreso una fecha de entrega, valida y crea el objeto
-            if (!diaStr.isEmpty() && !mesStr.isEmpty() && !anioStr.isEmpty()) {
-                int dia = Integer.parseInt(diaStr);
-                int mes = Integer.parseInt(mesStr);
-                int anio = Integer.parseInt(anioStr);
-                
-                
-                // Le pregunta a la PC el año actual
-                java.time.LocalDate hoy = java.time.LocalDate.now();
-                int anioActual = hoy.getYear();
+        // Si el usuario ingreso una fecha de entrega, valida y crea el objeto
+        if (!diaStr.isEmpty() && !mesStr.isEmpty() && !anioStr.isEmpty()) {
 
-                // 1. Rango de año dinamico (No menor al año actual de la PC, ni mayor a 10 años en el futuro)
-                if (anio < anioActual || anio > anioActual + 1000000) {
-                    JOptionPane.showMessageDialog(this, "El año ingresado no es válido (debe ser mayor a: " + anioActual + ").");
-                    return;
-                }
-                
-                // Validacionde fechas
-                if (mes < 1 || mes > 12) {
-                    JOptionPane.showMessageDialog(this, "El mes ingresado no es válido (debe ser entre 1 y 12).");
-                    return; // Corta la ejecucion para que no guarde
-                }
-                if (dia < 1 || dia > 31) {
-                    JOptionPane.showMessageDialog(this, "El día ingresado no es válido (debe ser entre 1 y 31).");
-                    return;
-                }
-                
-                // Filtro de meses con 30 dias
-                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) {
-                    JOptionPane.showMessageDialog(this, "Error: El mes " + mes + " solo tiene 30 días.");
-                    return;
-                }
-                // Filtro de febrero
-                if (mes == 2 && dia > 29) {
-                    JOptionPane.showMessageDialog(this, "Error: Febrero no puede tener más de 29 días.");
-                    return;
-                }
-                
-                
-                // Si pasa todos los filtros de arriba, crea el objeto Fecha con seguridad
-                Modelo.Fecha nuevaFechaEntrega = new Modelo.Fecha(dia, mes, anio);
-                estudioActual.setEntrega(nuevaFechaEntrega);
+            //validacion
+            if (!diaStr.matches("\\d+") || !mesStr.matches("\\d+") || !anioStr.matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "La fecha de entrega ingresada no es válida. Use solo números enteros.");
+                return;
             }
 
-            // Modifica el estado en RAM
-            estudioActual.setEstado(estadoSeleccionado);
+            //usamos parse
+            int dia = Integer.parseInt(diaStr);
+            int mes = Integer.parseInt(mesStr);
+            int anio = Integer.parseInt(anioStr);
+            
+            // Le pregunta a la PC el año actual
+            java.time.LocalDate hoy = java.time.LocalDate.now();
+            int anioActual = hoy.getYear();
 
-            // Modifica en el Archivo (.txt)
-            ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
-            archivoCtrl.guardarEstudios(eControl.getListaEstudios());
-
-            JOptionPane.showMessageDialog(this, "Estudio actualizado con éxito.");
-
-            // Limpia la pantalla
-            estudioActual = null;
-            jTextField11.setText(""); 
-            jTextField12.setText(""); 
-            jTextField18.setText(""); 
-            jTextField21.setText(""); 
+            // 3. Validaciones de consistencia de la fecha
+            if (anio < anioActual - 1 || anio > anioActual + 5) {
+                JOptionPane.showMessageDialog(this, "El año ingresado no es válido.");
+                return;
+            }
+            if (mes < 1 || mes > 12) {
+                JOptionPane.showMessageDialog(this, "El mes ingresado no es válido (debe ser entre 1 y 12).");
+                return; 
+            }
+            if (dia < 1 || dia > 31) {
+                JOptionPane.showMessageDialog(this, "El día ingresado no es válido (debe ser entre 1 y 31).");
+                return;
+            }
+            
+            // Filtro de meses con 30 dias
+            if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) {
+                JOptionPane.showMessageDialog(this, "Error: El mes " + mes + " solo tiene 30 días.");
+                return;
+            }
+            // Filtro de febrero
+            if (mes == 2 && dia > 29) {
+                JOptionPane.showMessageDialog(this, "Error: Febrero no puede tener más de 29 días.");
+                return;
+            }
             
             
-            jTextField25.setText("");
-            jTextField26.setText("");
-            jTextField19.setText("");
-            jTextField20.setText("");
+            int anioR = estudioActual.getRealizacion().getAnio();
+            int mesR = estudioActual.getRealizacion().getMes();
+            int diaR = estudioActual.getRealizacion().getDia();
             
-
-            jTextField22.setText("");
-            jTextField23.setText("");
-            jTextField24.setText("");
-            jComboBox1.setSelectedIndex(0);
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "La fecha de entrega ingresada no es válida. Use números.");
+            boolean fechaInvalida = false;
+            if (anio < anioR) {
+                fechaInvalida = true;
+            } else if (anio == anioR && mes < mesR) {
+                fechaInvalida = true;
+            } else if (anio == anioR && mes == mesR && dia < diaR) {
+                fechaInvalida = true;
+            }
+            
+            if (fechaInvalida) {
+                JOptionPane.showMessageDialog(this, "Error: La fecha de entrega no puede ser anterior a la fecha de realización (" + diaR + "/" + mesR + "/" + anioR + ").");
+                return;
+            }
+           
+            
+            // Si pasa todos los filtros de arriba, crea el objeto Fecha con seguridad
+            Modelo.Fecha nuevaFechaEntrega = new Modelo.Fecha(dia, mes, anio);
+            estudioActual.setEntrega(nuevaFechaEntrega);
         }
+
+        // Modifica el estado
+        estudioActual.setEstado(estadoSeleccionado);
+
+        // Modifica en el Archivo (.txt) (Las excepciones estan dentro del controlador de archivos)
+        Controlador.ArchivoControlador archivoCtrl = new Controlador.ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+        archivoCtrl.guardarEstudios(eControl.getListaEstudios());
+
+        JOptionPane.showMessageDialog(this, "Estudio actualizado con éxito.");
+
+        // Limpia la pantalla
+        estudioActual = null;
+        jTextField11.setText(""); 
+        jTextField12.setText(""); 
+        jTextField18.setText(""); 
+        jTextField21.setText(""); 
+        
+        jTextField25.setText("");
+        jTextField26.setText("");
+        jTextField19.setText("");
+        jTextField20.setText("");
+        
+        jTextField22.setText("");
+        jTextField23.setText("");
+        jTextField24.setText("");
+        jComboBox1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -941,6 +956,16 @@ public class VentanaModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
+    
+    private int convertirAEntero(String texto) {
+        int numero = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char digito = texto.charAt(i);
+            numero = (numero * 10) + (digito - '0');
+        }
+        return numero;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

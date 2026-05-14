@@ -85,7 +85,10 @@ public class ArchivoControlador {
                 String ape = br.readLine();
                 String tel = br.readLine();
                 String mail = br.readLine();
-                int mat = Integer.parseInt(br.readLine());
+               
+                
+                // Leemos la línea y la convertimos 
+                int mat = convertirAEntero(br.readLine());
 
                 lista.add(new Profesional(mat, ape, nom, tel, mail));
             }
@@ -140,19 +143,21 @@ public class ArchivoControlador {
             String dniBuscado;
             
             while ((dniBuscado = br.readLine()) != null) {
-                int matBuscada = Integer.parseInt(br.readLine());
                 
-                // crea una fecha para realización
+                //convertimos
+                int matBuscada = convertirAEntero(br.readLine());
+                
+                // Crea una fecha para realización
                 int rDia = Integer.parseInt(br.readLine());
                 int rMes = Integer.parseInt(br.readLine());
                 int rAnio = Integer.parseInt(br.readLine());
-                Fecha realizacion = new Fecha(rDia, rMes, rAnio);
+                Modelo.Fecha realizacion = new Modelo.Fecha(rDia, rMes, rAnio);
                 
-                // crea una fecha para entrega
+                // Crea una fecha para entrega 
                 int eDia = Integer.parseInt(br.readLine());
                 int eMes = Integer.parseInt(br.readLine());
                 int eAnio = Integer.parseInt(br.readLine());
-                Fecha entrega = new Fecha(eDia, eMes, eAnio);
+                Modelo.Fecha entrega = new Modelo.Fecha(eDia, eMes, eAnio);
 
                 String estado = br.readLine();
                 
@@ -162,23 +167,25 @@ public class ArchivoControlador {
                 if (!lineaAnalisis.equals("vacio")) {
                     String[] partes = lineaAnalisis.split(",");
                     for (String parte : partes) {
-                        if (!parte.isEmpty()) {
-                           analisis.add(Integer.valueOf(parte));
+                        if (!parte.trim().isEmpty()) {
+                            // --- REGLA DEL PROFE: Código NO es fecha, usamos método propio ---
+                            analisis.add(convertirAEntero(parte));
                         }
                     }
                 }
 
                 // Busca paciente por dni
-                Paciente pacEncontrado = null;
-                for (Paciente p : pacientesCargados) {
+                Modelo.Paciente pacEncontrado = null;
+                for (Modelo.Paciente p : pacientesCargados) {
                     if (p.getDni().equals(dniBuscado)) {
                         pacEncontrado = p;
                         break; 
                     }
                 }
-                //Busca profesional por matricula
-                Profesional profEncontrado = null;
-                for (Profesional pr : profesionalesCargados) {
+                
+                // Busca profesional por matricula
+                Modelo.Profesional profEncontrado = null;
+                for (Modelo.Profesional pr : profesionalesCargados) {
                     if (pr.getMatricula() == matBuscada) {
                         profEncontrado = pr;
                         break;
@@ -187,7 +194,7 @@ public class ArchivoControlador {
 
                 // Si todo está bien se crea el estudio con el orden exacto del constructor
                 if (pacEncontrado != null && profEncontrado != null) {
-                    Estudio nuevoEstudio = new Estudio(pacEncontrado, profEncontrado, realizacion, entrega, estado, analisis);
+                    Modelo.Estudio nuevoEstudio = new Modelo.Estudio(pacEncontrado, profEncontrado, realizacion, entrega, estado, analisis);
                     lista.add(nuevoEstudio);
                 }
             }
@@ -195,6 +202,17 @@ public class ArchivoControlador {
             System.err.println("Error al cargar estudios: " + e.getMessage());
         }
         return lista;
+    }
+    
+    private int convertirAEntero(String texto) {
+        int numero = 0;
+        // Evitamos espacios en blanco extraños que puedan venir del archivo de texto
+        texto = texto.trim(); 
+        for (int i = 0; i < texto.length(); i++) {
+            char digito = texto.charAt(i);
+            numero = (numero * 10) + (digito - '0');
+        }
+        return numero;
     }
 
 }

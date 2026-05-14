@@ -797,11 +797,11 @@ public class VentanaCargar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDiaRealizacionActionPerformed
 
     private void btnGuardarProfesionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProfesionalActionPerformed
-            String matricula = txtMatriculaProfesional.getText().trim();
-    String nombre = txtNombreProfesional.getText().trim();
-    String apellido = txtApellidoProfesional.getText().trim();
-    String telefono = txtTelefonoProfesional.getText().trim();
-    String mail = txtMailProfesional.getText().trim().toLowerCase();
+        String matricula = txtMatriculaProfesional.getText().trim();
+        String nombre = txtNombreProfesional.getText().trim();
+        String apellido = txtApellidoProfesional.getText().trim();
+        String telefono = txtTelefonoProfesional.getText().trim();
+        String mail = txtMailProfesional.getText().trim().toLowerCase();
     
 
     // Valida campos vacios
@@ -833,13 +833,13 @@ public class VentanaCargar extends javax.swing.JFrame {
             return;
         }
     // Valida que no exista ya
-    int matriculaInt = Integer.parseInt(matricula);
+    int matriculaInt = convertirAEntero(matricula);
     if (profControl.buscarProfesional(matriculaInt) != null) {
         JOptionPane.showMessageDialog(null, "Ya existe un profesional con esa matrícula.");
         return;
     }
 
-    // Guarda
+    // 5. Guardar
     profControl.registrarNuevoProfesional(matriculaInt, apellido, nombre, telefono, mail);
     
     // Persistencia de archivo
@@ -862,12 +862,11 @@ public class VentanaCargar extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
     private void btnAgregarAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAnalisisActionPerformed
-        // Agarra el texto completo que eligio el usuario 
         String seleccionado = cmbAnalisisDisponibles.getSelectedItem().toString();
-        
-        // Usa un truco para cortar el texto justo en el guion y quedarnos solo con el numero
         String codigoStr = seleccionado.split(" - ")[0]; 
-        int codigo = Integer.parseInt(codigoStr);
+        
+        //convertimos el codigo a int
+        int codigo = convertirAEntero(codigoStr);
         
         if (analisisTemporales.contains(codigo)) {
             JOptionPane.showMessageDialog(null, "Ese análisis ya fue agregado a la lista.");
@@ -875,50 +874,47 @@ public class VentanaCargar extends javax.swing.JFrame {
         }
         
         analisisTemporales.add(codigo);
-        // Usa el texto seleccionado entero para mostrarlo en el cuadro de abajo
         txtAreaAnalisis.append(seleccionado + "\n");
     }//GEN-LAST:event_btnAgregarAnalisisActionPerformed
 
     private void btnEliminarAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAnalisisActionPerformed
-        // Boton eliminar estudio
-        // Verifica que haya algo para borrar
+        // 1. Verificamos que haya algo para borrar
         if (analisisTemporales.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay ningún análisis agregado para eliminar.");
             return;
         }
 
-        // Le pregunta al usuario qué codigo quiere sacar
+        // 2. Le preguntamos al usuario qué código quiere sacar
         String codigoStr = JOptionPane.showInputDialog(this, "Ingrese el CÓDIGO del análisis que desea eliminar:");
 
-        // Si el usuario presiona "Cancelar" o cierra la ventanita, cortamos aca
+        // Si el usuario presiona "Cancelar" o cierra la ventanita, cortamos acá
         if (codigoStr == null || codigoStr.trim().isEmpty()) {
             return; 
         }
+        
+        codigoStr = codigoStr.trim();
 
-        try {
-            int codigoAEliminar = Integer.parseInt(codigoStr.trim());
-
-            // Verifica si ese codigo realmente estaba en la lista
-            if (analisisTemporales.contains(codigoAEliminar)) {
-                
-                // Borra de la memoria temporal (Usando el truco de Integer.valueOf)
-                analisisTemporales.remove(Integer.valueOf(codigoAEliminar));
-
-                // Limpia el cuadro de texto y lo volvemos a escribir sin el analisis borrado
-                txtAreaAnalisis.setText("");
-                for (int cod : analisisTemporales) {
-                    String nombre = eControl.obtenerNombre(cod);
-                    txtAreaAnalisis.append(cod + " - " + nombre + "\n");
-                }
-
-                JOptionPane.showMessageDialog(this, "Análisis eliminado con éxito.");
-                
-            } else {
-                JOptionPane.showMessageDialog(this, "Ese código no se encuentra en la lista de análisis agregados.");
-            }
-
-        } catch (NumberFormatException ex) {
+        // 3. validacion de codigo
+        if (!codigoStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese solo números enteros.");
+            return;
+        }
+
+        // Usamos nuestro propio método
+        int codigoAEliminar = convertirAEntero(codigoStr);
+
+        if (analisisTemporales.contains(codigoAEliminar)) {
+            analisisTemporales.remove(Integer.valueOf(codigoAEliminar));
+            
+            txtAreaAnalisis.setText("");
+            for (int cod : analisisTemporales) {
+                String nombre = eControl.obtenerNombre(cod);
+                txtAreaAnalisis.append(cod + " - " + nombre + "\n");
+            }
+            JOptionPane.showMessageDialog(this, "Análisis eliminado con éxito.");
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Ese código no se encuentra en la lista de análisis agregados.");
         }
     }//GEN-LAST:event_btnEliminarAnalisisActionPerformed
 
@@ -934,126 +930,116 @@ public class VentanaCargar extends javax.swing.JFrame {
         String anioE = txtAnioEntrega.getText().trim();
         String estado = cmbEstado.getSelectedItem().toString();
 
-        // Valida campos vacios
         if (dniPaciente.isEmpty() || matriculaStr.isEmpty() || diaR.isEmpty() || mesR.isEmpty() || anioR.isEmpty() || diaE.isEmpty() || mesE.isEmpty() || anioE.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
 
-        // Valida que exista el paciente
         if (pControl.buscarPacientePorDni(dniPaciente) == null) {
             JOptionPane.showMessageDialog(null, "No existe un paciente con ese DNI.");
             return;
         }
 
-        // Valida que exista el profesional
         if (!matriculaStr.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "La matrícula debe ser numérica.");
             return;
         }
-        int matricula = Integer.parseInt(matriculaStr);
+        
+        // REGLA DEL PROFE: No es fecha, usamos método propio
+        int matricula = convertirAEntero(matriculaStr);
         if (profControl.buscarProfesional(matricula) == null) {
             JOptionPane.showMessageDialog(null, "No existe un profesional con esa matrícula.");
             return;
         }
 
-        // Valida que haya al menos un analisis
         if (analisisTemporales.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe agregar al menos un análisis.");
             return;
         }
 
-        // Validacion de fechas
-        try {
-            int dR = Integer.parseInt(diaR);
-            int mR = Integer.parseInt(mesR);
-            int aR = Integer.parseInt(anioR);
-
-            int dE = Integer.parseInt(diaE);
-            int mE = Integer.parseInt(mesE);
-            int aE = Integer.parseInt(anioE);
-
-            java.time.LocalDate hoy = java.time.LocalDate.now();
-            int anioActual = hoy.getYear();
-
-            // Rangos basicos (Días 1-31, Meses 1-12, Años lógicos) ---
-            if (mR < 1 || mR > 12 || mE < 1 || mE > 12) {
-                JOptionPane.showMessageDialog(null, "Error: El mes debe estar entre 1 y 12.");
-                return;
-            }
-            if (dR < 1 || dR > 31 || dE < 1 || dE > 31) {
-                JOptionPane.showMessageDialog(null, "Error: El día debe estar entre 1 y 31.");
-                return;
-            }
-            // Evita años del pasado o demasiado lejanos en el futuro
-            if (aR < anioActual - 1 || aE > anioActual + 5) {
-                JOptionPane.showMessageDialog(null, "Error: El año ingresado no es válido.");
-                return;
-            }
-
-            // Dias por mes (Abril, Junio, etc.) 
-            if (((mR == 4 || mR == 6 || mR == 9 || mR == 11) && dR > 30) || 
-                ((mE == 4 || mE == 6 || mE == 9 || mE == 11) && dE > 30)) {
-                JOptionPane.showMessageDialog(null, "Error: Uno de los meses ingresados solo tiene 30 días.");
-                return;
-            }
-            if ((mR == 2 && dR > 29) || (mE == 2 && dE > 29)) {
-                JOptionPane.showMessageDialog(null, "Error: Febrero no puede tener más de 29 días.");
-                return;
-            }
-
-            // Consistencia temporal (Entrega >= Realizacion) 
-            boolean fechaInvalida = false;
-            if (aE < aR) {
-                fechaInvalida = true;
-            } else if (aE == aR && mE < mR) {
-                fechaInvalida = true;
-            } else if (aE == aR && mE == mR && dE < dR) {
-                fechaInvalida = true;
-            }
-
-            if (fechaInvalida) {
-                JOptionPane.showMessageDialog(null, "Error: La fecha de entrega no puede ser anterior a la de realización.");
-                return;
-            }
-
-            // Guarda (Si pasó todos los filtros)
-            eControl.setPaciente(pControl.buscarPacientePorDni(dniPaciente));
-            eControl.setProfesional(profControl.buscarProfesional(matricula));
-            eControl.setFechaRealizacion(new Fecha(dR, mR, aR));
-            eControl.setFechaEntrega(new Fecha(dE, mE, aE));
-            eControl.setEstado(estado);
-            
-            for (int cod : analisisTemporales) {
-                eControl.agregarAnalisis(cod);
-            }
-            
-            eControl.listaAgregarEstudio();
-            eControl.prepararNuevoEstudio();
-
-            ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
-            archivoCtrl.guardarEstudios(eControl.getListaEstudios());
-
-            JOptionPane.showMessageDialog(null, "Estudio guardado correctamente.");
-
-            // Limpia todo
-            txtDniEstudio.setText("");
-            txtMatriculaEstudio.setText("");
-            
-            // Ingresa la fecha de la PC
-            txtDiaRealizacion.setText("" + hoy.getDayOfMonth());
-            txtMesRealizacion.setText("" + hoy.getMonthValue());
-            txtAnioRealizacion.setText("" + hoy.getYear());
-
-            txtDiaEntrega.setText("");
-            txtMesEntrega.setText("");
-            txtAnioEntrega.setText("");
-            analisisTemporales.clear();
-            txtAreaAnalisis.setText("");
-
-        } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Error: Ingrese solo números en los campos de fecha.");  
+        // VALIDACIÓN DE FECHAS SIN EXCEPCIONES
+        if (!diaR.matches("\\d+") || !mesR.matches("\\d+") || !anioR.matches("\\d+") || 
+            !diaE.matches("\\d+") || !mesE.matches("\\d+") || !anioE.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Error: Ingrese solo números enteros en los campos de fecha.");
+            return;
         }
+
+        //parse para fecha
+        int dR = Integer.parseInt(diaR);
+        int mR = Integer.parseInt(mesR);
+        int aR = Integer.parseInt(anioR);
+        int dE = Integer.parseInt(diaE);
+        int mE = Integer.parseInt(mesE);
+        int aE = Integer.parseInt(anioE);
+
+        java.time.LocalDate hoy = java.time.LocalDate.now();
+        int anioActual = hoy.getYear();
+
+        if (mR < 1 || mR > 12 || mE < 1 || mE > 12) {
+            JOptionPane.showMessageDialog(null, "Error: El mes debe estar entre 1 y 12.");
+            return;
+        }
+        if (dR < 1 || dR > 31 || dE < 1 || dE > 31) {
+            JOptionPane.showMessageDialog(null, "Error: El día debe estar entre 1 y 31.");
+            return;
+        }
+        if (aR < anioActual - 1 || aE > anioActual + 5) {
+            JOptionPane.showMessageDialog(null, "Error: El año ingresado no es válido.");
+            return;
+        }
+
+        if (((mR == 4 || mR == 6 || mR == 9 || mR == 11) && dR > 30) || 
+            ((mE == 4 || mE == 6 || mE == 9 || mE == 11) && dE > 30)) {
+            JOptionPane.showMessageDialog(null, "Error: Uno de los meses ingresados solo tiene 30 días.");
+            return;
+        }
+        if ((mR == 2 && dR > 29) || (mE == 2 && dE > 29)) {
+            JOptionPane.showMessageDialog(null, "Error: Febrero no puede tener más de 29 días.");
+            return;
+        }
+
+        boolean fechaInvalida = false;
+        if (aE < aR) {
+            fechaInvalida = true;
+        } else if (aE == aR && mE < mR) {
+            fechaInvalida = true;
+        } else if (aE == aR && mE == mR && dE < dR) {
+            fechaInvalida = true;
+        }
+
+        if (fechaInvalida) {
+            JOptionPane.showMessageDialog(null, "Error: La fecha de entrega no puede ser anterior a la de realización.");
+            return;
+        }
+
+        eControl.setPaciente(pControl.buscarPacientePorDni(dniPaciente));
+        eControl.setProfesional(profControl.buscarProfesional(matricula));
+        eControl.setFechaRealizacion(new Fecha(dR, mR, aR));
+        eControl.setFechaEntrega(new Fecha(dE, mE, aE));
+        eControl.setEstado(estado);
+        
+        for (int cod : analisisTemporales) {
+            eControl.agregarAnalisis(cod);
+        }
+        
+        eControl.listaAgregarEstudio();
+        eControl.prepararNuevoEstudio();
+
+        ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
+        archivoCtrl.guardarEstudios(eControl.getListaEstudios());
+
+        JOptionPane.showMessageDialog(null, "Estudio guardado correctamente.");
+
+        txtDniEstudio.setText("");
+        txtMatriculaEstudio.setText("");
+        txtDiaRealizacion.setText("" + hoy.getDayOfMonth());
+        txtMesRealizacion.setText("" + hoy.getMonthValue());
+        txtAnioRealizacion.setText("" + hoy.getYear());
+        txtDiaEntrega.setText("");
+        txtMesEntrega.setText("");
+        txtAnioEntrega.setText("");
+        analisisTemporales.clear();
+        txtAreaAnalisis.setText("");
     }//GEN-LAST:event_btnGuardarEstudioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1070,6 +1056,17 @@ public class VentanaCargar extends javax.swing.JFrame {
      
     }//GEN-LAST:event_cmbAnalisisDisponiblesActionPerformed
 
+    
+    private int convertirAEntero(String texto) {
+        int numero = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char digito = texto.charAt(i);
+            numero = (numero * 10) + (digito - '0');
+        }
+        return numero;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

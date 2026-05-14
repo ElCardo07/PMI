@@ -351,7 +351,8 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return;
         }
 
-        int matricula = Integer.parseInt(matriculaStr);
+        //convertimos
+        int matricula = convertirAEntero(matriculaStr);
         Profesional prof = profControl.buscarProfesional(matricula);
         
         if (prof != null) {
@@ -363,7 +364,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // Boton eliminar profesional
+            // Boton eliminar profesional
         String matriculaStr = jTextField1.getText().trim();
         
         if (!matriculaStr.matches("\\d+")) {
@@ -371,7 +372,8 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return;
         }
 
-        int matricula = Integer.parseInt(matriculaStr);
+        //convertimos
+        int matricula = convertirAEntero(matriculaStr); 
         Profesional prof = profControl.buscarProfesional(matricula);
 
         if (prof == null) {
@@ -383,7 +385,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
         int cantEstudios = eControl.filtrarPorProfesional(matricula).size();
         if (cantEstudios > 0) {
             JOptionPane.showMessageDialog(this, "ERROR: No se puede eliminar al profesional.\nTiene " + cantEstudios + " estudio(s) asociado(s).", "Violación de Integridad", JOptionPane.ERROR_MESSAGE);
-            return; // Cortamos el proceso aca, NO LO BORRA.
+            return;
         }
 
         // Si paso la verificacion, mostramos el cartel de confirmacion
@@ -394,10 +396,10 @@ public class VentanaEliminar extends javax.swing.JFrame {
             JOptionPane.WARNING_MESSAGE);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            // Borramos del mapa de RAM
+            // Borramos del mapa
             profControl.eliminarProfesional(matricula);
             
-            // Persistencia en archivo 
+            // Persistencia en archivo (Esto maneja sus propias excepciones válidas por dentro)
             ArchivoControlador archivoCtrl = new ArchivoControlador("pacientes.txt", "profesionales.txt", "estudios.txt");
             archivoCtrl.guardarProfesionales(profControl.getListaProfesionales());
             
@@ -414,6 +416,15 @@ public class VentanaEliminar extends javax.swing.JFrame {
         this.dispose(); // Cierra esta ventana de modificar
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private int convertirAEntero(String texto) {
+        int numero = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char digito = texto.charAt(i);
+            numero = (numero * 10) + (digito - '0');
+        }
+        return numero;
+    }
+    
     /**
      * @param args the command line arguments
      */
